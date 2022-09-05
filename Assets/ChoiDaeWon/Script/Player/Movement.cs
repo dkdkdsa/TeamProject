@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
+
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerRigid = GetComponent<Rigidbody2D>();
@@ -23,7 +24,7 @@ public class Movement : MonoBehaviour
     }
 
     private void Update()
-    {
+    {                
 
         Move();
         Flip();

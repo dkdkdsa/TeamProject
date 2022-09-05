@@ -1,4 +1,4 @@
-using System;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +33,10 @@ public class Weapon : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 
-
+            cam.DOShakePosition(0.05f, new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)), 1000, 0);
+            PoolManager.instance.Remove("Bullet", firePos.transform.position, Quaternion.Euler(0, 0, angle - 5));
+            PoolManager.instance.Remove("Bullet", firePos.transform.position, Quaternion.Euler(0, 0, angle));
+            PoolManager.instance.Remove("Bullet", firePos.transform.position, Quaternion.Euler(0, 0, angle + 5));
 
         }
 
