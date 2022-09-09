@@ -9,11 +9,10 @@ public class DamageText : MonoBehaviour
 
     private TextMeshPro text;
 
-    private void Start()
+    private void Awake()
     {
 
         text = GetComponent<TextMeshPro>();
-        Show(10);
 
     }
 
@@ -21,7 +20,7 @@ public class DamageText : MonoBehaviour
     {
 
         text.text = damage.ToString();
-        transform.DOJump(new Vector2(transform.position.x, transform.position.y + 0.5f), 1, 1, 1.5f).SetEase(Ease.OutBounce);
+        transform.DOJump(new Vector2(transform.position.x, transform.position.y + 0.5f), 1, 1, 0.5f).SetEase(Ease.OutBounce);
 
 
     }

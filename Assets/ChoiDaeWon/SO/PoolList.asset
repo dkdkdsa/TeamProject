@@ -16,3 +16,6 @@ MonoBehaviour:
   - poolName: Bullet
     poolObj: {fileID: 2783628268745599196, guid: cee67d8e673fe8945887f4c3cc4d9c8e, type: 3}
     poolCount: 10
+  - poolName: DamageText
+    poolObj: {fileID: 5277781179484766157, guid: 190bd575f54881b4f8a29ce2aa1e136a, type: 3}
+    poolCount: 30

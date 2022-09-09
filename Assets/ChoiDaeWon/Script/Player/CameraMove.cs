@@ -6,7 +6,7 @@ public class CameraMove : MonoBehaviour
 {
     [SerializeField ]private Transform traget;
 
-    private void FixedUpdate()
+    private void Update()
     {
 
         Move();

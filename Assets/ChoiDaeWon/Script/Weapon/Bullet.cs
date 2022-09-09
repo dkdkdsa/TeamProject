@@ -5,12 +5,15 @@ public class Bullet : MonoBehaviour
 {
 
     [SerializeField] private float speed; 
+
     private Rigidbody2D bulletRigid;
+    private int enemyLayer;
 
     private void Awake()
     {
         
         bulletRigid = GetComponent<Rigidbody2D>();
+        enemyLayer = LayerMask.NameToLayer("Enemy");
 
     }
 
@@ -20,6 +23,7 @@ public class Bullet : MonoBehaviour
         Move();
 
     }
+
 
     private void Disable()
     {
@@ -34,4 +38,18 @@ public class Bullet : MonoBehaviour
         bulletRigid.velocity = transform.right * speed;
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if(collision.gameObject.layer == enemyLayer)
+        {
+
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.TakeAttack(1);
+            Disable();
+
+        }
+
+    }
+
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Movement : MonoBehaviour
 {
@@ -11,7 +12,11 @@ public class Movement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D playerRigid;
+    private Vector2 currentDir;
+    private Vector2 dashPos;
     private bool isMove;
+    private bool moveAble;
+    private bool dashCoolDown;
     private bool isDash;
 
     private void Awake()
@@ -20,13 +25,14 @@ public class Movement : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerRigid = GetComponent<Rigidbody2D>();
+        moveAble = true;
 
     }
 
     private void Update()
     {                
 
-        Move();
+        if(moveAble == true) Move();
         Flip();
         Dash();
 
@@ -35,37 +41,48 @@ public class Movement : MonoBehaviour
     private void Dash()
     {
 
-        if (Input.GetMouseButtonDown(1) && isDash == false)
+        if (Input.GetKeyDown(KeyCode.Space) && dashCoolDown == false)
         {
 
-            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
+            //currentDir = cam.ScreenToWorldPoint(Input.mousePosition);
+            currentDir = Vector2.ClampMagnitude(cam.ScreenToWorldPoint(Input.mousePosition), 3);
+            Debug.Log(currentDir);
+            dashCoolDown = true;
             isDash = true;
-            transform.position = Vector2.MoveTowards(transform.position, mousePos, 3);
+            moveAble = false;
             StartCoroutine(DelayCo());
+
+        }
+
+        if(isDash == true) transform.position = Vector2.MoveTowards(transform.position, currentDir, speed * Time.deltaTime * 10);
+
+        if((Vector3)currentDir == transform.position)
+        {
+
+            isDash = false;
+            moveAble = true;
 
         }
 
     }
 
+
     private void Move()
     {
 
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
 
-        float rawX = Input.GetAxisRaw("Horizontal");
-        float rawY = Input.GetAxisRaw("Vertical");
+        if (Input.GetMouseButtonDown(1))
+        {
 
-        if (rawX != 0 || rawY != 0) isMove = true;
-        else isMove = false;
+            currentDir = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        animator.SetBool("Run", isMove);
+        }
 
-        float slow = isMove ? 1.0f : 0.5f;
-        Vector2 dir = new Vector2(x, y);
+        if (transform.position != (Vector3)currentDir) animator.SetBool("Run", true);
+        else animator.SetBool("Run", false);
 
-        playerRigid.velocity = dir * speed * slow;
+
+        transform.position = Vector2.MoveTowards(transform.position, currentDir, speed * Time.deltaTime);
 
     }
 
@@ -85,7 +102,7 @@ public class Movement : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1f);
-        isDash = false;
+        dashCoolDown = false;
 
     }
 

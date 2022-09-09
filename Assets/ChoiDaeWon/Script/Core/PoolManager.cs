@@ -31,8 +31,10 @@ public class PoolManager : MonoBehaviour
 
     }
 
-    public void Remove(string name, Vector2 pos, Quaternion rot)
+    public GameObject Remove(string name, Vector2 pos, Quaternion rot)
     {
+
+        GameObject obj = null;
 
         bool value = false;
 
@@ -43,7 +45,7 @@ public class PoolManager : MonoBehaviour
             {
 
                 value = true;
-                GameObject obj = poolObjs[i].gameObject;
+                obj = poolObjs[i].gameObject;
                 obj.SetActive(true);
                 obj.transform.SetPositionAndRotation(pos, rot);
                 poolObjs.Remove(obj);
@@ -62,17 +64,19 @@ public class PoolManager : MonoBehaviour
                 if(poolList.pools[i].poolName == name)
                 {
 
-                    GameObject _obj = Instantiate(poolList.pools[i].poolObj);
-                    _obj.name = poolList.pools[i].poolName;
-                    _obj.transform.SetParent(transform);
-                    _obj.transform.SetPositionAndRotation(pos, rot);
-                    _obj.gameObject.SetActive(true);
+                    obj = Instantiate(poolList.pools[i].poolObj);
+                    obj.name = poolList.pools[i].poolName;
+                    obj.transform.SetParent(transform);
+                    obj.transform.SetPositionAndRotation(pos, rot);
+                    obj.gameObject.SetActive(true);
 
                 }
 
             }
 
         }
+
+        return obj;
 
     }
 

@@ -5,14 +5,25 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    private BoxCollider2D boxCollider;
+    [SerializeField] private int HP;
 
-    private void TakeAttack()
+    private GameObject hpBar;
+    private BoxCollider2D boxCollider;
+    private bool isDie;
+
+    private void Update()
+    {
+        
+
+
+    }
+
+    public void TakeAttack(int damage)
     {
 
-        Collider2D col = Physics2D.OverlapBox(transform.position, boxCollider.size, 0, LayerMask.GetMask("Bullet"));
+        DamageText text = PoolManager.instance.Remove("DamageText", new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity).GetComponent<DamageText>();
 
-        bool value = col;
+        text.Show(damage);
 
     } 
 
