@@ -8,12 +8,12 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private Camera cam;
+    [SerializeField] private GameObject dashPos;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D playerRigid;
     private Vector2 currentDir;
-    private Vector2 dashPos;
     private bool isMove;
     private bool moveAble;
     private bool dashCoolDown;
@@ -45,7 +45,8 @@ public class Movement : MonoBehaviour
         {
 
             //currentDir = cam.ScreenToWorldPoint(Input.mousePosition);
-            currentDir = Vector2.ClampMagnitude(cam.ScreenToWorldPoint(Input.mousePosition), 3);
+            animator.SetBool("Dash", true);
+            currentDir = dashPos.transform.position;
             Debug.Log(currentDir);
             dashCoolDown = true;
             isDash = true;
@@ -59,6 +60,7 @@ public class Movement : MonoBehaviour
         if((Vector3)currentDir == transform.position)
         {
 
+            animator.SetBool("Dash", false);
             isDash = false;
             moveAble = true;
 

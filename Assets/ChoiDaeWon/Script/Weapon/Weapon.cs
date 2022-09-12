@@ -8,17 +8,11 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private Transform firePos;
+    [SerializeField] private BulletDataSO slot1, slot2, slot3;
 
     private float angle;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
 
         SetAngle();
@@ -34,9 +28,9 @@ public class Weapon : MonoBehaviour
         {
 
             cam.DOShakePosition(0.05f, new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)), 1000, 0);
-            PoolManager.instance.Remove("Bullet", firePos.transform.position, Quaternion.Euler(0, 0, angle - 5));
-            PoolManager.instance.Remove("Bullet", firePos.transform.position, Quaternion.Euler(0, 0, angle));
-            PoolManager.instance.Remove("Bullet", firePos.transform.position, Quaternion.Euler(0, 0, angle + 5));
+            PoolManager.instance.Remove(slot1.bulletObj.gameObject.name, firePos.transform.position, Quaternion.Euler(0, 0, angle - 5));
+            PoolManager.instance.Remove(slot2.bulletObj.gameObject.name, firePos.transform.position, Quaternion.Euler(0, 0, angle));
+            PoolManager.instance.Remove(slot3.bulletObj.gameObject.name, firePos.transform.position, Quaternion.Euler(0, 0, angle + 5));
 
         }
 

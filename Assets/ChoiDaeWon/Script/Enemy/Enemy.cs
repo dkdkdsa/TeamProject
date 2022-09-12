@@ -5,25 +5,32 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    [SerializeField] private int HP;
+    [SerializeField] private GameObject hpBar;
+    [SerializeField] private EnemyDataSO data;
 
-    private GameObject hpBar;
+    private float hp;
     private BoxCollider2D boxCollider;
     private bool isDie;
 
-    private void Update()
+    private void Awake()
     {
-        
 
+        hp = data.maxHP;
 
     }
 
-    public void TakeAttack(int damage)
+    private void Update()
     {
 
-        DamageText text = PoolManager.instance.Remove("DamageText", new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity).GetComponent<DamageText>();
+        hp = Mathf.Clamp(hp, 0, data.maxHP);
+        hpBar.transform.localScale = new Vector2(hp / data.maxHP, hpBar.transform.localScale.y);
 
-        text.Show(damage);
+    }
+
+    public void TakeAttack(float damage)
+    {
+
+        hp -= damage;
 
     } 
 

@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b9c66d16a392d46800dd55c8ebd81f, type: 3}
-  m_Name: PoolList
+  m_Script: {fileID: 11500000, guid: 7545e3af65fb94945a0385a1ded51e39, type: 3}
+  m_Name: TestEnemyData
   m_EditorClassIdentifier: 
-  pools:
-  - poolName: Bullet
-    poolObj: {fileID: 2783628268745599196, guid: cee67d8e673fe8945887f4c3cc4d9c8e, type: 3}
-    poolCount: 10
+  maxHP: 100
+  attackPower: 0

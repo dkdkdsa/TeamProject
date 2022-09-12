@@ -12,11 +12,13 @@ public class PlayerTalk : MonoBehaviour
 
         Collider2D value = Physics2D.OverlapBox(transform.position, new Vector2(1.5f, 1.5f), 0, LayerMask.GetMask("NPC"));
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && value == true)
         {
 
+            Conversation conversation = value.GetComponent<Conversation>();
             textBox.gameObject.SetActive(true);
-            textBox.Set(value.GetComponent<Conversation>());
+            textBox.Set(conversation);
+            conversation.Click();
 
         }
 

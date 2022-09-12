@@ -4,8 +4,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    [SerializeField] private float speed; 
-
+    [SerializeField] private float speed;
+    [SerializeField] private BulletDataSO bulletData;
+    
     private Rigidbody2D bulletRigid;
     private int enemyLayer;
 
@@ -45,7 +46,7 @@ public class Bullet : MonoBehaviour
         {
 
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.TakeAttack(1);
+            enemy.TakeAttack(ValueManager.instance.PlayerDamage(bulletData.bulletExtraDamage));
             Disable();
 
         }

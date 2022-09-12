@@ -35,8 +35,16 @@ public class Conversation : MonoBehaviour
         {
 
             textBox.gameObject.SetActive(false);
+            Init();
 
         }
+
+    }
+
+    public void Init()
+    {
+
+        count = 0;
 
     }
 
