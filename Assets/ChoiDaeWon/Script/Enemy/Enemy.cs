@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
@@ -23,7 +24,9 @@ public class Enemy : MonoBehaviour
     {
 
         hp = Mathf.Clamp(hp, 0, data.maxHP);
-        hpBar.transform.localScale = new Vector2(hp / data.maxHP, hpBar.transform.localScale.y);
+        DOTween.Kill(hpBar);
+        hpBar.transform.DOScaleX(hp / data.maxHP, 0.1f);
+        //hpBar.transform.localScale = new Vector2(hp / data.maxHP, hpBar.transform.localScale.y);
 
     }
 

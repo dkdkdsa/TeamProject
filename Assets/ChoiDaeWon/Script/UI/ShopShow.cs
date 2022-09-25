@@ -19,6 +19,13 @@ public class ShopShow : MonoBehaviour
 
     }
 
+    public void Disable()
+    {
+
+        transform.DOLocalMove(new Vector2(0, 1100), 1).SetEase(Ease.OutBounce);
+
+    }
+
     public void Show()
     {
 

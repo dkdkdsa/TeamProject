@@ -12,6 +12,7 @@ public class Dialogue
     public string name;
     public float textSpeed;
     [TextArea] public string dialoug;
+    public UnityEvent endEnent;
     public UnityEvent clickEvent;
     public Sprite sprite;
 
@@ -67,7 +68,8 @@ public class Conversation : MonoBehaviour
         text.DOText(dialogueList[count].dialoug, dialogueList[count].textSpeed)
         .OnComplete(() =>
         {
-
+            
+            dialogueList[count].endEnent?.Invoke();
             isTalking = false;
             count++;
 
