@@ -8,16 +8,21 @@ public class SlotShow : MonoBehaviour
 {
 
     private Image image;
+    private Image itemImage;
 
     private void Awake()
     {
 
         image = GetComponent<Image>();
+        itemImage = GetComponentsInChildren<Image>()[1];
 
     }
 
-    public void Show()
+
+    public void Show(Sprite sprite)
     {
+
+        itemImage.sprite = sprite;
 
         image.color = new Color(255, 255, 255, 0);
         transform.localScale = new Vector2(0.1f, 0.1f);
@@ -40,7 +45,8 @@ public class SlotShow : MonoBehaviour
 
     public void UIReset()
     {
-        
+
+
         Sequence seq = DOTween.Sequence();
         seq
         .Append(transform.DOScale(Vector2.zero, 0.1f)).SetEase(Ease.InExpo)

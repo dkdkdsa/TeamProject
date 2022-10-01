@@ -8,12 +8,16 @@ public class ShopShow : MonoBehaviour
 
     [SerializeField] private GameObject slotParent;
 
+
+    private string s;
+    private ShopCore core;
     private SlotShow[] slots;
     private bool isReset;
 
     private void Awake()
     {
 
+        core = FindObjectOfType<ShopCore>();
         isReset = true;
         slots = GetComponentsInChildren<SlotShow>();
 
@@ -54,7 +58,8 @@ public class ShopShow : MonoBehaviour
         for(int i = 0; i < slots.Length; i++)
         {
 
-            slots[i].Show();
+            core.SetShopSlot(out Sprite sprite, out string name);
+            slots[i].Show(sprite);
             yield return new WaitForSeconds(0.2f);
 
         }
@@ -78,7 +83,7 @@ public class ShopShow : MonoBehaviour
         }
 
 
-        yield return null; new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
 
         StartCoroutine(SlotShowCo());
 

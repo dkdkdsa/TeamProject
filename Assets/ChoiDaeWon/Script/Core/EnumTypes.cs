@@ -13,4 +13,12 @@ namespace EnumTypes
 
     }
 
+    public enum ItemType
+    {
+
+        Bullet,
+        Portion
+
+    }
+
 }

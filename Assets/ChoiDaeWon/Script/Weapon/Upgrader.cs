@@ -46,5 +46,55 @@ public class Upgrader : MonoBehaviour
         }
 
     }
+
+    public int FindUpGradeCount(BulletType type)
+    {
+
+        int n = 0;
+
+        for(int i = 0; i < list.Count; i++)
+        {
+
+            if (list[i].bulletType == type)
+            {
+
+                n = list[i].upgradeCount;
+
+                break;
+
+            }
+
+        }
+
+        return n;
+
+    }
+
+    public bool UpGrade(BulletType type)
+    {
+
+        bool value = false;
+
+        for(int i = 0; i < list.Count; i++)
+        {
+
+            if(list[i].bulletType == type)
+            {
+
+                if(list[i].upgradeEvents.Length > list[i].upgradeCount)
+                {
+
+                    list[i].upgradeCount++;
+                    value = true;
+
+                }
+
+            }
+
+        }
+
+        return value;
+
+    }
     
 }
