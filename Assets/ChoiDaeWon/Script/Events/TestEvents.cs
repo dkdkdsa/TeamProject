@@ -12,4 +12,11 @@ public class TestEvents : MonoBehaviour
 
     }
 
+    public void Event(string value)
+    {
+
+        Debug.Log(value);
+
+    }
+
 }

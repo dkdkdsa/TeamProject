@@ -15,7 +15,7 @@ public class SlotShow : MonoBehaviour
 
         image = GetComponent<Image>();
         itemImage = GetComponentsInChildren<Image>()[1];
-
+        itemImage.color = new Color(255, 255, 255, 0);
     }
 
 
@@ -24,6 +24,7 @@ public class SlotShow : MonoBehaviour
 
         itemImage.sprite = sprite;
 
+        itemImage.color = new Color(255, 255, 255, 1);
         image.color = new Color(255, 255, 255, 0);
         transform.localScale = new Vector2(0.1f, 0.1f);
         Sequence sequence = DOTween.Sequence();

@@ -8,8 +8,6 @@ public class ShopShow : MonoBehaviour
 
     [SerializeField] private GameObject slotParent;
 
-
-    private string s;
     private ShopCore core;
     private SlotShow[] slots;
     private bool isReset;
@@ -54,12 +52,16 @@ public class ShopShow : MonoBehaviour
     IEnumerator SlotShowCo()
     {
 
+
+
         yield return null;
         for(int i = 0; i < slots.Length; i++)
         {
 
             core.SetShopSlot(out Sprite sprite, out string name);
             slots[i].Show(sprite);
+            ShopSlot slot = slots[i].GetComponent<ShopSlot>();
+            slot.itemName = name;
             yield return new WaitForSeconds(0.2f);
 
         }

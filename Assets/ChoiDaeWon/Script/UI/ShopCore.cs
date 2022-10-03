@@ -55,14 +55,27 @@ public class ShopCore : MonoBehaviour
     public void BuyBullet(string itemName)
     {
 
-        bool value = GameManager.instance.Money >= items[FindItem(itemName)].itemPrice + items[FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(items[FindItem(itemName)].bulletDataSO.bulletType)];
-
-        if (value)
+        if (Upgrader.instance.ChackMaxUpgrade(items[FindItem(itemName)].bulletDataSO.bulletType) == false)
         {
 
-            GameManager.instance.Money -= items[FindItem(itemName)].itemPrice + items[FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(items[FindItem(itemName)].bulletDataSO.bulletType)];
+            bool value = GameManager.instance.Money >= items[FindItem(itemName)].itemPrice + items[FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(items[FindItem(itemName)].bulletDataSO.bulletType)];
+
+            if (value)
+            {
+
+                GameManager.instance.Money -= items[FindItem(itemName)].itemPrice + items[FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(items[FindItem(itemName)].bulletDataSO.bulletType)];
+                Upgrader.instance.UpGrade(items[FindItem(itemName)].bulletDataSO.bulletType);
+
+            }
 
         }
+        else
+        {
+
+            //나중에 추가
+
+        }
+
 
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    private int money;
+    [SerializeField] private int money;
 
     public int Money { get { return money; } set { money = value; } }
 

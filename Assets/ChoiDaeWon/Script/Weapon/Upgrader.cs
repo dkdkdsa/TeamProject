@@ -96,5 +96,36 @@ public class Upgrader : MonoBehaviour
         return value;
 
     }
+
+    public bool ChackMaxUpgrade(BulletType type)
+    {
+
+        int n = 0;
+        bool value = false;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+
+            if (list[i].bulletType == type)
+            {
+
+                n = list[i].upgradeCount;
+
+                break;
+
+            }
+
+        }
+
+        if(n >= 3)
+        {
+
+            value = true;
+
+        }
+
+        return value;
+
+    }
     
 }
