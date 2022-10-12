@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
         {
 
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.TakeAttack(ValueManager.instance.PlayerDamage(bulletData.bulletExtraDamage));
+            enemy.TakeAttack(ValueManager.instance.PlayerDamage(Upgrader.instance.FindExtraDamage(bulletData.bulletType)));
             Upgrader.instance.UpgradeEvent(bulletData.bulletType, enemy);
             Disable();
 

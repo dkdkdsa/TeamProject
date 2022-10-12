@@ -10,7 +10,7 @@ public class EventList
 
     public BulletType bulletType;
     public int upgradeCount;
-    public float extraDamage;
+    public float[] extraDamage;
     public UnityEvent<Enemy>[] upgradeEvents;
 
 }
@@ -67,6 +67,29 @@ public class Upgrader : MonoBehaviour
         }
 
         return n;
+
+    }
+
+    public float FindExtraDamage(BulletType type)
+    {
+
+        float value = 0;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+
+            if (list[i].bulletType == type)
+            {
+
+                value = list[i].extraDamage[list[i].upgradeCount];
+
+                break;
+
+            }
+
+        }
+
+        return value;
 
     }
 

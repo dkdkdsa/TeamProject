@@ -37,6 +37,8 @@ public class Conversation : MonoBehaviour
 
             textBox.gameObject.SetActive(false);
             Init();
+            GameManager.instance.SetPlayerGunAble(true);
+            GameManager.instance.SetPlayerMoveAble(true);
 
         }
 
@@ -68,7 +70,7 @@ public class Conversation : MonoBehaviour
         text.DOText(dialogueList[count].dialoug, dialogueList[count].textSpeed)
         .OnComplete(() =>
         {
-            
+
             dialogueList[count].endEnent?.Invoke();
             isTalking = false;
             count++;

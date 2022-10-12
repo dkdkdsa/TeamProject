@@ -40,12 +40,12 @@ public class Inventory : MonoBehaviour
         }
 
     }
+
     private void SetSlots()
     {
 
         //세이브 만들면 만들기
-
-
+        
         for(int i = 0; i < weaponBullets.Length; i++)
         {
 
@@ -54,12 +54,33 @@ public class Inventory : MonoBehaviour
 
                 weapon.SetBulletSlot(i, normalBullet);
                 weaponBullets[i].Set(normalBullet);
+                bulletSlots[0].Set(normalBullet);
 
             }
             else
             {
 
                 weapon.SetBulletSlot(i, weaponBullets[i].bullet);
+
+            }
+
+        }
+
+        
+
+    }
+
+    public void GetBullet(BulletDataSO bulletDataSO)
+    {
+
+        for(int i = 0; i < bulletSlots.Length; i++)
+        {
+
+            if(bulletSlots[i].BulletData == null)
+            {
+
+                bulletSlots[i].Set(bulletDataSO);
+                break;
 
             }
 

@@ -14,7 +14,23 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         
-        instance = this;
+        instance = this;        
+
+    }
+
+    public void SetPlayerMoveAble(bool value)
+    {
+
+        Movement movement = FindObjectOfType<Movement>();
+        movement.MoveAble = value;
+
+    }
+
+    public void SetPlayerGunAble(bool value)
+    {
+
+        Weapon weapon = FindObjectOfType<Weapon>();
+        weapon.ShootAble = value;
 
     }
 

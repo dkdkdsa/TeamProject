@@ -798,6 +798,7 @@ GameObject:
   - component: {fileID: 420094781}
   - component: {fileID: 420094783}
   - component: {fileID: 420094782}
+  - component: {fileID: 420094784}
   m_Layer: 5
   m_Name: Slot (3)
   m_TagString: Untagged
@@ -863,6 +864,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420094780}
   m_CullTransparentMesh: 1
+--- !u!114 &420094784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420094780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4773429786a021419216c7970eb3492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlotParent: {fileID: 1019998784}
+  bullet: {fileID: 0}
+  itemImage: {fileID: 0}
+  <isAble>k__BackingField: 0
 --- !u!1 &421608020
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +891,7 @@ GameObject:
   - component: {fileID: 421608021}
   - component: {fileID: 421608023}
   - component: {fileID: 421608022}
+  - component: {fileID: 421608024}
   m_Layer: 5
   m_Name: Slot (5)
   m_TagString: Untagged
@@ -939,6 +957,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421608020}
   m_CullTransparentMesh: 1
+--- !u!114 &421608024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421608020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4773429786a021419216c7970eb3492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlotParent: {fileID: 1019998784}
+  bullet: {fileID: 0}
+  itemImage: {fileID: 0}
+  <isAble>k__BackingField: 0
 --- !u!1 &443659158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1134,7 @@ GameObject:
   - component: {fileID: 543520983}
   - component: {fileID: 543520985}
   - component: {fileID: 543520984}
+  - component: {fileID: 543520986}
   m_Layer: 5
   m_Name: Slot (4)
   m_TagString: Untagged
@@ -1165,6 +1200,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543520982}
   m_CullTransparentMesh: 1
+--- !u!114 &543520986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543520982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4773429786a021419216c7970eb3492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlotParent: {fileID: 1019998784}
+  bullet: {fileID: 0}
+  itemImage: {fileID: 0}
+  <isAble>k__BackingField: 0
 --- !u!1 &558343074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,6 +1520,7 @@ GameObject:
   - component: {fileID: 594141262}
   - component: {fileID: 594141264}
   - component: {fileID: 594141263}
+  - component: {fileID: 594141265}
   m_Layer: 5
   m_Name: Slot (2)
   m_TagString: Untagged
@@ -1534,6 +1586,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594141261}
   m_CullTransparentMesh: 1
+--- !u!114 &594141265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594141261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4773429786a021419216c7970eb3492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlotParent: {fileID: 1019998784}
+  bullet: {fileID: 0}
+  itemImage: {fileID: 0}
+  <isAble>k__BackingField: 0
 --- !u!1 &595203099
 GameObject:
   m_ObjectHideFlags: 0
@@ -8134,6 +8202,7 @@ MonoBehaviour:
   weaponSlotParent: {fileID: 1019998784}
   bullet: {fileID: 11400000, guid: 21ef8637aad667b479e10d81468e8f89, type: 2}
   itemImage: {fileID: 0}
+  <isAble>k__BackingField: 0
 --- !u!1 &637847883
 GameObject:
   m_ObjectHideFlags: 0
@@ -8797,7 +8866,11 @@ MonoBehaviour:
   list:
   - bulletType: 0
     upgradeCount: 0
-    extraDamage: 0
+    extraDamage:
+    - 0
+    - 10
+    - 20
+    - 30
     upgradeEvents:
     - m_PersistentCalls:
         m_Calls:
@@ -8855,6 +8928,70 @@ MonoBehaviour:
             m_StringArgument: 3
             m_BoolArgument: 0
           m_CallState: 2
+  - bulletType: 1
+    upgradeCount: 0
+    extraDamage:
+    - 0
+    - 0
+    - 0
+    - 0
+    upgradeEvents:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1279026527}
+          m_TargetAssemblyTypeName: BulletEvents, Assembly-CSharp
+          m_MethodName: FireBullet
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1279026527}
+          m_TargetAssemblyTypeName: BulletEvents, Assembly-CSharp
+          m_MethodName: FireBullet
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1279026527}
+          m_TargetAssemblyTypeName: BulletEvents, Assembly-CSharp
+          m_MethodName: FireBullet
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1279026527}
+          m_TargetAssemblyTypeName: BulletEvents, Assembly-CSharp
+          m_MethodName: FireBullet
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &791950394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8871,6 +9008,11 @@ MonoBehaviour:
   - itemType: 0
     bulletDataSO: {fileID: 11400000, guid: 21ef8637aad667b479e10d81468e8f89, type: 2}
     itemName: NormalBullet
+    itemPrice: 1
+    upgradeExtraPrice: 00000000010000000200000003000000
+  - itemType: 0
+    bulletDataSO: {fileID: 11400000, guid: 8ef163a6eb8bbbf448e8fecdeaa0df7a, type: 2}
+    itemName: FireBullet
     itemPrice: 1
     upgradeExtraPrice: 00000000010000000200000003000000
 --- !u!114 &791950395
@@ -9710,6 +9852,7 @@ GameObject:
   - component: {fileID: 1162915038}
   - component: {fileID: 1162915040}
   - component: {fileID: 1162915039}
+  - component: {fileID: 1162915041}
   m_Layer: 5
   m_Name: Slot (1)
   m_TagString: Untagged
@@ -9775,6 +9918,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162915037}
   m_CullTransparentMesh: 1
+--- !u!114 &1162915041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162915037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4773429786a021419216c7970eb3492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlotParent: {fileID: 1019998784}
+  bullet: {fileID: 11400000, guid: 8ef163a6eb8bbbf448e8fecdeaa0df7a, type: 2}
+  itemImage: {fileID: 0}
+  <isAble>k__BackingField: 0
 --- !u!1 &1224737296
 GameObject:
   m_ObjectHideFlags: 0
@@ -9989,6 +10148,7 @@ GameObject:
   - component: {fileID: 1279026525}
   - component: {fileID: 1279026524}
   - component: {fileID: 1279026526}
+  - component: {fileID: 1279026527}
   m_Layer: 0
   m_Name: Events
   m_TagString: Untagged
@@ -10037,6 +10197,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a7dae473505354684d8e3f2c128406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1279026527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279026523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7573b82fe61744088dd98e6ebd8d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireDotDamage:
+  - 1
+  - 2
+  - 3
+  - 4
+  fireDotDamageDuration:
+  - 3
+  - 4
+  - 5
+  - 6
 --- !u!1 &1283588949
 GameObject:
   m_ObjectHideFlags: 0

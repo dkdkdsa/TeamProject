@@ -65,14 +65,14 @@ public class ShopCore : MonoBehaviour
 
                 GameManager.instance.Money -= items[FindItem(itemName)].itemPrice + items[FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(items[FindItem(itemName)].bulletDataSO.bulletType)];
                 Upgrader.instance.UpGrade(items[FindItem(itemName)].bulletDataSO.bulletType);
-
+                
             }
 
         }
         else
         {
 
-            //나중에 추가
+            Debug.Log("이미 전부 강화된 상품입니다.");
 
         }
 

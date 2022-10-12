@@ -12,12 +12,15 @@ public class BulletSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     [SerializeField] private Image itemImage;
 
     private DragSlot dragSlot;
-    
+
+    [field:SerializeField] public bool isAble { get; set; }
+    public BulletDataSO BulletData => bullet;
+
     private void Awake()
     {
 
         //юс╫ц
-        Set(bullet);
+        if(bullet != null) Set(bullet);
 
     }
 

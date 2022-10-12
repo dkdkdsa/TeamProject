@@ -18,9 +18,10 @@ public class ValueManager : MonoBehaviour
     public float PlayerDamage(float extraDamage)
     {
 
-        float value;
-        value = Random.Range(attackPower - 1, attackPower + 1);
+        float value = attackPower;
         value += value * (extraDamage / 100);
+
+        Debug.Log(value);
 
         return value;
 

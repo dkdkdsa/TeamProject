@@ -20,19 +20,28 @@ public class Weapon : MonoBehaviour
 
     public int CurrentAmmo => currentAmmo;
 
+    public bool ShootAble { get; set; }
+
     private void Awake()
     {
 
         ammoText = "Ammo";
+        ShootAble = true;
 
     }
 
     private void Update()
     {
 
-        SetAngle();
-        RotateWeapon(angle > 90f || angle < -90);
-        Shoot();
+        if(ShootAble == true)
+        {
+
+            SetAngle();
+            RotateWeapon(angle > 90f || angle < -90);
+            Shoot();
+
+        }
+
 
     }
 

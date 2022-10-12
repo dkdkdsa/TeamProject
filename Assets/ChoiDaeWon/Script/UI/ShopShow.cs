@@ -24,12 +24,17 @@ public class ShopShow : MonoBehaviour
     public void Disable()
     {
 
-        transform.DOLocalMove(new Vector2(0, 1100), 1).SetEase(Ease.OutBounce);
+        GameManager.instance.SetPlayerGunAble(true);
+        GameManager.instance.SetPlayerMoveAble(true);
+        transform.DOLocalMove(new Vector2(0, 1100), 1);
 
     }
 
     public void Show()
     {
+
+        GameManager.instance.SetPlayerGunAble(false);
+        GameManager.instance.SetPlayerMoveAble(false);
 
         transform.DOLocalMove(Vector2.zero, 1).SetEase(Ease.OutBounce)
         .SetDelay(0.5f)

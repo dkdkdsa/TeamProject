@@ -11,6 +11,8 @@ public class TextBox : MonoBehaviour, IPointerDownHandler
     public void Set(Conversation value)
     {
 
+        GameManager.instance.SetPlayerGunAble(false);
+        GameManager.instance.SetPlayerMoveAble(false);
         conversation = value;
 
     }

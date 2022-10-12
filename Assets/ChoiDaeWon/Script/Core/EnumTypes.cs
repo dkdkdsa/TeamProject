@@ -21,4 +21,11 @@ namespace EnumTypes
 
     }
 
+    public enum EnemyType
+    {
+
+
+
+    }
+
 }

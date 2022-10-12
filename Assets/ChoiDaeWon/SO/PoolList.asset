@@ -16,3 +16,6 @@ MonoBehaviour:
   - poolName: Bullet
     poolObj: {fileID: 2783628268745599196, guid: cee67d8e673fe8945887f4c3cc4d9c8e, type: 3}
     poolCount: 10
+  - poolName: FireBullet
+    poolObj: {fileID: 2783628268745599196, guid: 29de1e871f76f4c4095f90a6a49107db, type: 3}
+    poolCount: 10

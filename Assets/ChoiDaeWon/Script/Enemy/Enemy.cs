@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Interfaces;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IEnemy 
 {
 
     [SerializeField] private GameObject hpBar;
     [SerializeField] private EnemyDataSO data;
 
+    [field: SerializeField] public float originSpeed { get; set; }
+
     private float hp;
     private BoxCollider2D boxCollider;
-    private bool isDie;
+
+    public bool isDie { get; set; } = false;
+    public float currentSpeed { get; set; }
 
     private void Awake()
     {

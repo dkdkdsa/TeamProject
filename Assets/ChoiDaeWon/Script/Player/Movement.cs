@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
     private bool dashCoolDown;
     private bool isDash;
 
+    public bool MoveAble { get { return moveAble; } set { moveAble = value; } }
+
     private void Awake()
     {
 
@@ -30,11 +32,16 @@ public class Movement : MonoBehaviour
     }
 
     private void Update()
-    {                
+    {
 
-        if(moveAble == true) Move();
-        Flip();
-        Dash();
+        if (moveAble == true) 
+        { 
+
+            Move();
+            Flip();
+            Dash();
+        
+        } 
 
     }
 
