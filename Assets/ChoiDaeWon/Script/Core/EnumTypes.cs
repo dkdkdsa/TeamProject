@@ -24,7 +24,9 @@ namespace EnumTypes
     public enum EnemyType
     {
 
-
+        Normal,
+        Ghost,
+        Boss
 
     }
 

@@ -36,7 +36,6 @@ public class Conversation : MonoBehaviour
         {
 
             textBox.gameObject.SetActive(false);
-            Init();
             GameManager.instance.SetPlayerGunAble(true);
             GameManager.instance.SetPlayerMoveAble(true);
 

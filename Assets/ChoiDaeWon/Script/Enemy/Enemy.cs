@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Interfaces;
+using EnumTypes;
 
 public class Enemy : MonoBehaviour, IEnemy 
 {
@@ -11,6 +12,7 @@ public class Enemy : MonoBehaviour, IEnemy
     [SerializeField] private EnemyDataSO data;
 
     [field: SerializeField] public float originSpeed { get; set; }
+    [field:SerializeField] public EnemyType Type { get; private set; }
 
     private float hp;
     private BoxCollider2D boxCollider;
@@ -18,9 +20,11 @@ public class Enemy : MonoBehaviour, IEnemy
     public bool isDie { get; set; } = false;
     public float currentSpeed { get; set; }
 
+
     private void Awake()
     {
 
+        currentSpeed = originSpeed;
         hp = data.maxHP;
 
     }

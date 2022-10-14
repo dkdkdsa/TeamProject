@@ -18,6 +18,7 @@ public class PlayerTalk : MonoBehaviour
             Conversation conversation = value.GetComponent<Conversation>();
             textBox.gameObject.SetActive(true);
             textBox.Set(conversation);
+            conversation.Init();
             conversation.Click();
 
         }

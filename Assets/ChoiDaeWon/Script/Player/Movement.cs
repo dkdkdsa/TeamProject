@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D playerRigid;
     private Vector2 currentDir;
     private bool isMove;
-    private bool moveAble;
+    [SerializeField] private bool moveAble;
     private bool dashCoolDown;
     private bool isDash;
 
@@ -39,16 +39,17 @@ public class Movement : MonoBehaviour
 
             Move();
             Flip();
-            Dash();
         
-        } 
+        }
+        
+        Dash();
 
     }
 
     private void Dash()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space) && dashCoolDown == false)
+        if (Input.GetKeyDown(KeyCode.Space) && dashCoolDown == false && moveAble == true)
         {
 
             //currentDir = cam.ScreenToWorldPoint(Input.mousePosition);

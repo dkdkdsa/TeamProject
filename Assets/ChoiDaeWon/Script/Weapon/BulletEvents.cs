@@ -7,19 +7,37 @@ public class BulletEvents : MonoBehaviour
 {
 
     #region È­¿°Åº
+
     [SerializeField] private float[] fireDotDamage;
     [SerializeField] private float[] fireDotDamageDuration;
+    private float currentFireDuration;
+    private bool isDotDeal;
+    private IEnumerator fireDotDamageCO;
+
     #endregion
 
     #region Ice
     [Range(0f, 1f)][SerializeField] private float[] freezPower;
     [SerializeField] private float[] freezDuration;
+    private bool isIce;
     #endregion
 
-    private bool isIce;
-    private bool isDotDeal;
-    private float currentFireDuration;
-    private IEnumerator fireDotDamageCO;
+    #region God
+
+    [SerializeField] private float[] godExtraDamage;
+
+    #endregion
+
+    #region poison
+
+    [SerializeField] private float[] poisonDotDamage;
+    [SerializeField] private float[] poisonDotDamageDuration;
+    private float currentPoisonDuration;
+    private bool isPoisonDotDeal;
+
+    #endregion
+
+
 
     public void FireBullet(Enemy enemy)
     {
@@ -47,6 +65,47 @@ public class BulletEvents : MonoBehaviour
         
     }
 
+    public void God(Enemy enemy)
+    {
+
+        if(enemy.Type == EnemyType.Ghost) enemy.TakeAttack(godExtraDamage[Upgrader.instance.FindUpGradeCount(BulletType.God)]);
+
+    }
+
+    public void Posion(Enemy enemy)
+    {
+
+        currentPoisonDuration += poisonDotDamageDuration[Upgrader.instance.FindUpGradeCount(BulletType.Poison)];
+
+        if (isDotDeal == false)
+        {
+
+            StartCoroutine(PoisonDotDamage(Upgrader.instance.FindUpGradeCount(BulletType.Poison), enemy));
+
+        }
+
+    }
+
+    IEnumerator PoisonDotDamage(int upgradeCount, Enemy enemy)
+    {
+
+        yield return null;
+        isPoisonDotDeal = true;
+
+        while (currentPoisonDuration > 0)
+        {
+
+            enemy.TakeAttack(poisonDotDamage[upgradeCount]);
+            yield return new WaitForSeconds(0.3f);
+            currentPoisonDuration -= 0.3f;
+
+        }
+
+        currentPoisonDuration = 0;
+
+        isPoisonDotDeal = false;
+
+    }
     IEnumerator ThawCo(Enemy enemy, int upgradeCount)
     {
 

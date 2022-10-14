@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private int money;
+    [SerializeField] private Transform target;
 
     public int Money { get { return money; } set { money = value; } }
 
