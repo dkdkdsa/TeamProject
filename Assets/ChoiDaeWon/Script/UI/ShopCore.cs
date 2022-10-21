@@ -55,6 +55,9 @@ public class ShopCore : MonoBehaviour
     public void BuyBullet(string itemName)
     {
 
+        Debug.Log(itemName);
+        Debug.Log(FindItem(itemName));
+
         if (Upgrader.instance.ChackMaxUpgrade(items[FindItem(itemName)].bulletDataSO.bulletType) == false)
         {
 

@@ -17,7 +17,7 @@ namespace EnumTypes
     {
 
         Bullet,
-        Portion
+        Potion
 
     }
 
@@ -27,6 +27,15 @@ namespace EnumTypes
         Normal,
         Ghost,
         Boss
+
+    }
+
+    public enum PotionType
+    {
+
+        Lv1,
+        Lv2,
+        Lv3
 
     }
 

@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class TestEnemyAI : EnemyAICore
 {
-    [field:SerializeField] public override RangeCircle range { get; set; }
-    [field:SerializeField] public override Enemy enemy { get; set; }
+    [field:SerializeField] protected override RangeCircle range { get; set; }
+    [field:SerializeField] protected override RangeCircle attackRange { get; set; }
+    [field:SerializeField] protected override Enemy enemy { get; set; }
 
+    private bool isAttack;
+    private IEnumerator attackCo;
+
+    private void Awake()
+    {
+
+        attackCo = AttackCo();
+
+    }
 
     void Update()
     {
@@ -15,16 +26,29 @@ public class TestEnemyAI : EnemyAICore
 
     }
 
-    public override void StateManaging()
+    protected override void StateManaging()
     {
 
-        if(range.DetectRange() == true)
+        if(enemy.hp <= 0)
+        {
+
+            Die();
+
+        }
+
+        if (range.DetectRange() == true && attackRange.DetectRange() == false)
         {
 
             Chase(enemy.currentSpeed);
 
         }
-        else
+        else if (attackRange.DetectRange() == true)
+        {
+
+            Attack();
+
+        }
+        else if(range.DetectRange() == false && attackRange.DetectRange() == false)
         {
 
             DontChase();
@@ -33,19 +57,50 @@ public class TestEnemyAI : EnemyAICore
 
     }
 
-    public override void Chase(float speed)
+    protected override void Chase(float speed)
     {
 
         Vector2 dir = range.Target.position - transform.position;
+
+        dir = Vector2.ClampMagnitude(dir, 1);
 
         transform.Translate(dir * speed * Time.deltaTime);
 
     }
 
-    public override void DontChase()
+    protected override void Attack()
+    {
+
+        if(isAttack == false)
+        {
+
+            StartCoroutine(AttackCo());
+
+        }
+
+    }
+
+    protected override void DontChase()
     {
 
 
+
+    }
+
+    protected override void Die()
+    {
+
+        PoolManager.instance.Add(gameObject);
+
+    }
+
+    IEnumerator AttackCo()
+    {
+
+        isAttack = true;
+        GameManager.instance.PlayerTakeDamage(5f);
+        yield return new WaitForSeconds(1f);
+        isAttack = false;
 
     }
 

@@ -10,6 +10,7 @@ public class BulletSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     [SerializeField] private GameObject weaponSlotParent;
     [SerializeField] private BulletDataSO bullet;
     [SerializeField] private Image itemImage;
+    [SerializeField] private bool isBuying;
 
     private DragSlot dragSlot;
 
@@ -19,6 +20,8 @@ public class BulletSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private void Awake()
     {
 
+        dragSlot = FindObjectOfType<DragSlot>();
+        if (isBuying == false) return;
         //юс╫ц
         if(bullet != null) Set(bullet);
 
@@ -26,7 +29,7 @@ public class BulletSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        if (isBuying == false) return;
         dragSlot.Set(bullet);
         dragSlot.ItemImage.color = new Color(255, 255, 255, 1);
 
@@ -34,7 +37,7 @@ public class BulletSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        
+        if (isBuying == false) return;
         dragSlot.transform.position = eventData.position;
 
     }
@@ -43,7 +46,6 @@ public class BulletSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
 
         itemImage = GetComponentsInChildren<Image>()[1];
-        dragSlot = FindObjectOfType<DragSlot>();
         this.bullet = bullet;
         itemImage.sprite = bullet.bulletSprite;
 
@@ -51,9 +53,19 @@ public class BulletSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
+        if (isBuying == false) return;
         dragSlot.transform.localPosition = Vector3.zero;
         dragSlot.ItemImage.color = new Color(0, 0, 0, 0);
 
     }
+
+    public void SetIsBuying(bool value)
+    {
+
+        Debug.Log(bullet);
+        isBuying = value;
+        Set(bullet);
+
+    }
+
 }

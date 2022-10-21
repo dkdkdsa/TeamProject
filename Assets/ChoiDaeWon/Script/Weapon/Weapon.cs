@@ -33,6 +33,8 @@ public class Weapon : MonoBehaviour
     private void Update()
     {
 
+        if (GameManager.instance.able == false) return;
+
         if(ShootAble == true)
         {
 

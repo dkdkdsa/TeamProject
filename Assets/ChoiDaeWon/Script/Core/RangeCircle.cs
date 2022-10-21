@@ -8,6 +8,7 @@ public class RangeCircle : MonoBehaviour
 
     [SerializeField] private float rangeRadius;
     [SerializeField] private bool isOutter;
+    [SerializeField] private Color color;
     [field:SerializeField] public Transform Target { get; private set; }
 
 
@@ -58,20 +59,8 @@ public class RangeCircle : MonoBehaviour
     private void OnDrawGizmos()
     {
 
-        if (isOutter == false)
-        {
-
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, rangeRadius);
-
-        }
-        else
-        {
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, rangeRadius);
-
-        }
+        Gizmos.color = color;
+        Gizmos.DrawWireSphere(transform.position, rangeRadius);
 
     }
 

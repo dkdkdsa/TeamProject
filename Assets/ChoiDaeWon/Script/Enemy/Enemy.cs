@@ -14,11 +14,11 @@ public class Enemy : MonoBehaviour, IEnemy
     [field: SerializeField] public float originSpeed { get; set; }
     [field:SerializeField] public EnemyType Type { get; private set; }
 
-    private float hp;
     private BoxCollider2D boxCollider;
 
     public bool isDie { get; set; } = false;
     public float currentSpeed { get; set; }
+    public float hp { get; set; }
 
 
     private void Awake()

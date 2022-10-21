@@ -17,7 +17,8 @@ public class EventList
 
 public class Upgrader : MonoBehaviour
 {
-    [SerializeField] private List<EventList> list = new List<EventList>();
+
+    public List<EventList> list = new List<EventList>();
 
     public static Upgrader instance;
 
@@ -108,6 +109,7 @@ public class Upgrader : MonoBehaviour
                 {
 
                     list[i].upgradeCount++;
+                    FindObjectOfType<Inventory>().GetBullet(list[i].bulletType);
                     value = true;
 
                 }

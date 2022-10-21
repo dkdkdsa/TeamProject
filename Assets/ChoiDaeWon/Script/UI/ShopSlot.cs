@@ -13,7 +13,7 @@ public class ShopSlot : MonoBehaviour, IPointerDownHandler
 
         ShopCore core = FindObjectOfType<ShopCore>();
 
-        core.BuyBullet(name);
+        core.BuyBullet(itemName);
 
     }
 }

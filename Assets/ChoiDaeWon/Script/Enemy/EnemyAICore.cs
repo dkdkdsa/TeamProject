@@ -5,10 +5,13 @@ using UnityEngine;
 public abstract class EnemyAICore : MonoBehaviour
 {
 
-    public abstract RangeCircle range { get; set; }
-    public abstract Enemy enemy { get; set; }
-    public abstract void StateManaging();
-    public abstract void Chase(float speed);
-    public abstract void DontChase();
+    protected abstract RangeCircle attackRange { get; set; }
+    protected abstract RangeCircle range { get; set; }
+    protected abstract Enemy enemy { get; set; }
+    protected abstract void Die();
+    protected abstract void StateManaging();
+    protected abstract void Chase(float speed);
+    protected abstract void DontChase();
+    protected abstract void Attack();
 
 }

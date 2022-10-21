@@ -9,13 +9,13 @@ public class Movement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject dashPos;
+    [SerializeField] private bool moveAble;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D playerRigid;
     private Vector2 currentDir;
     private bool isMove;
-    [SerializeField] private bool moveAble;
     private bool dashCoolDown;
     private bool isDash;
 
@@ -33,6 +33,8 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+
+        if(GameManager.instance.able == false) return;
 
         if (moveAble == true) 
         { 

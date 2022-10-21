@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
@@ -24,13 +25,14 @@ public class PlayerInput : MonoBehaviour
         OpenBulletInventory();
         Reload();
         ShopUIDisable();
+        Pause();
 
     }
 
     private void ShopUIDisable()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
 
             shopShow.Disable();
@@ -61,6 +63,18 @@ public class PlayerInput : MonoBehaviour
         {
 
             weapon.Reload();
+
+        }
+
+    }
+
+    private void Pause()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            UIManager.instance.PauseUIOpenAndClouse();
 
         }
 

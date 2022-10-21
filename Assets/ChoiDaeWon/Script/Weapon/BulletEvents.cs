@@ -37,7 +37,11 @@ public class BulletEvents : MonoBehaviour
 
     #endregion
 
+    #region ¹ø°³
 
+    [SerializeField] private float[] LiDuration;
+
+    #endregion
 
     public void FireBullet(Enemy enemy)
     {
@@ -83,6 +87,13 @@ public class BulletEvents : MonoBehaviour
             StartCoroutine(PoisonDotDamage(Upgrader.instance.FindUpGradeCount(BulletType.Poison), enemy));
 
         }
+
+    }
+
+    public void Li(Enemy enemy)
+    {
+
+        StartCoroutine(LiCo(Upgrader.instance.FindUpGradeCount(BulletType.Lightning), enemy));
 
     }
 
@@ -136,5 +147,13 @@ public class BulletEvents : MonoBehaviour
         isDotDeal = false;
 
     }
+    IEnumerator LiCo(int uc, Enemy enemy)
+    {
 
+        yield return null;
+        enemy.currentSpeed = 0;
+        yield return new WaitForSeconds(LiDuration[uc]);
+        enemy.currentSpeed = enemy.originSpeed;
+
+    }
 }

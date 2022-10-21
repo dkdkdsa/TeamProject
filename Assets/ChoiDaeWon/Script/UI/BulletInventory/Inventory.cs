@@ -1,3 +1,4 @@
+using EnumTypes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] private BulletDataSO normalBullet;
 
     private Weapon weapon;
-    private WeaponBulletSlot[] weaponBullets;
-    private BulletSlot[] bulletSlots;
+
+    [HideInInspector] public BulletSlot[] bulletSlots;
+    [HideInInspector] public WeaponBulletSlot[] weaponBullets;
 
     private void Awake()
     {
@@ -70,16 +72,19 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void GetBullet(BulletDataSO bulletDataSO)
+
+
+    public void GetBullet(BulletType bulletType)
     {
 
         for(int i = 0; i < bulletSlots.Length; i++)
         {
 
-            if(bulletSlots[i].BulletData == null)
+            if(bulletSlots[i].BulletData.bulletType == bulletType)
             {
 
-                bulletSlots[i].Set(bulletDataSO);
+                Debug.Log(123123123213);
+                bulletSlots[i].SetIsBuying(true);
                 break;
 
             }

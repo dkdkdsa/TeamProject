@@ -8,6 +8,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
 
+    [SerializeField] private Image pauseImage;
     [SerializeField] private GameObject bulletInventoryImage;
     [SerializeField] private TextMeshProUGUI ammoText;
 
@@ -32,13 +33,6 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void TryBulletInventoryStateChange(float value)
-    {
-
-        if (isAnyOpen && value == -0.1f && isInventoryOpening == false) BulletInventoryClose();
-        else if(isInventoryOpening == false && value == 0.1f) BulletInventoryOpen();
-
-    }
 
     private void BulletInventoryOpen()
     {
@@ -88,6 +82,36 @@ public class UIManager : MonoBehaviour
     {
 
         ammoText.text = $"{weapon.ammoText} : {weapon.CurrentAmmo}/18";
+
+    }
+    public void TryBulletInventoryStateChange(float value)
+    {
+
+        if (isAnyOpen && value == -0.1f && isInventoryOpening == false) BulletInventoryClose();
+        else if(isInventoryOpening == false && value == 0.1f) BulletInventoryOpen();
+
+    }
+
+    public void PauseUIOpenAndClouse()
+    {
+
+        pauseImage.gameObject.SetActive(!pauseImage.gameObject.activeSelf);
+
+        if(pauseImage.gameObject.activeSelf == true)
+        {
+
+            DOTween.KillAll();
+            GameManager.instance.able = false;
+            Time.timeScale = 0;
+
+        }
+        else
+        {
+
+            GameManager.instance.able = true;
+            Time.timeScale = 1;
+
+        }
 
     }
 
