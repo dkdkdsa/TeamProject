@@ -8,7 +8,9 @@ public class Items
 {
 
     public ItemType itemType;
+    public PotionType potionType;
     public BulletDataSO bulletDataSO;
+    public Sprite itemSprite;
     public string itemName;
     public int itemPrice;
     public int[] upgradeExtraPrice;
@@ -42,21 +44,42 @@ public class ShopCore : MonoBehaviour
 
     }
 
+    public void Buy(ItemType item, string itemName)
+    {
+
+        if(item == ItemType.Bullet)
+        {
+
+            BuyBullet(itemName);
+
+        }
+
+    }
+
+    public void BuyPotion(string itemName)
+    {
+
+        if (items[FindItem(itemName)].itemPrice <= GameManager.instance.Money)
+        {
+
+
+
+        }
+
+    }
+
     public void SetShopSlot(out Sprite sprite, out string itemName)
     {
 
         int r = Random.Range(0, items.Count);
 
-        sprite = items[r].bulletDataSO.bulletSprite;
+        sprite = items[r].itemSprite;
         itemName = items[r].itemName;
 
     }
-
+    
     public void BuyBullet(string itemName)
     {
-
-        Debug.Log(itemName);
-        Debug.Log(FindItem(itemName));
 
         if (Upgrader.instance.ChackMaxUpgrade(items[FindItem(itemName)].bulletDataSO.bulletType) == false)
         {

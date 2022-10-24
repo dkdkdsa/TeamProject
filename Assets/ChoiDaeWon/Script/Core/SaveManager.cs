@@ -31,12 +31,16 @@ public class SaveManager : MonoBehaviour
         if (File.Exists(@"C:\\Users\\user\\Documents\\GGMTPJ104\\SaveData.json") == false)
         {
 
-            File.Create(@"C:\\Users\\user\\Documents\\GGMTPJ104\\SaveData.txt");
+            File.Create(@"C:\\Users\\user\\Documents\\GGMTPJ104\\SaveData.json");
+            GameManager.instance.isStart = true;
 
         }
+        else
+        {
 
-        Read();
+            Read();
 
+        }
         //나중에 주석 풀어라 꼭 
         //GameManager.instance.SetAllObj();
 

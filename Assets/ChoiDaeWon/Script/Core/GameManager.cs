@@ -10,13 +10,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int money;
     [SerializeField] private Slider hpBar;
 
-    [field:SerializeField] public float PlayerHP { get; private set; }
+    [field:SerializeField] public float PlayerHP { get; set; }
 
     [HideInInspector] public Transform Player;
     [HideInInspector] public Camera Cam;
     
 
     public bool able { get; set; } = true;
+    public bool isStart { get; set; }
 
     public int Money { get { return money; } set { money = value; } }
 
@@ -31,7 +32,18 @@ public class GameManager : MonoBehaviour
         hpBar.maxValue = PlayerHP;
         SaveManager saveManager = FindObjectOfType<SaveManager>();
         saveManager.SetSaveData();
-        Save();
+
+    }
+
+    private void Start()
+    {
+        
+        if(isStart == true)
+        {
+
+            Save();
+
+        }
 
     }
 
