@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour, IEnemy
 {
 
     [SerializeField] private GameObject hpBar;
-    [SerializeField] private EnemyDataSO data;
+    public EnemyDataSO data;
 
     [field: SerializeField] public float originSpeed { get; set; }
     [field:SerializeField] public EnemyType Type { get; private set; }

@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D playerRigid;
     private Vector2 currentDir;
-    private bool isMove;
+    private bool isDie;
     private bool dashCoolDown;
     private bool isDash;
 
@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
 
-        if(GameManager.instance.able == false) return;
+        if(GameManager.instance.able == false || isDie == true) return;
 
         if (moveAble == true) 
         { 
@@ -107,6 +107,16 @@ public class Movement : MonoBehaviour
         Vector3 result = Vector3.Cross(Vector2.up, dir);
 
         spriteRenderer.flipX = result.z > 0;
+
+    }
+
+    public void Die()
+    {
+
+        if (isDie == true) return;
+
+        isDie = true;
+        animator.SetTrigger("Die");
 
     }
 

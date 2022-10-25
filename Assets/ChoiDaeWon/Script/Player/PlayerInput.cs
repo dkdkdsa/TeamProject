@@ -26,6 +26,7 @@ public class PlayerInput : MonoBehaviour
         Reload();
         ShopUIDisable();
         Pause();
+        UsePotion();
 
     }
 
@@ -75,6 +76,32 @@ public class PlayerInput : MonoBehaviour
         {
 
             UIManager.instance.PauseUIOpenAndClouse();
+
+        }
+
+    }
+
+    private void UsePotion()
+    {
+
+        Potion potion = FindObjectOfType<Potion>();
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+
+            potion.PotionUse(EnumTypes.PotionType.Lv1);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+
+            potion.PotionUse(EnumTypes.PotionType.Lv2);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+
+            potion.PotionUse(EnumTypes.PotionType.Lv3);
 
         }
 

@@ -51,21 +51,21 @@ public class Potion : MonoBehaviour
     public void PotionUse(PotionType type)
     {
 
-        if (type == PotionType.Lv1)
+        if (type == PotionType.Lv1 && portionCount_Lv1 > 0)
         {
 
             portionCount_Lv1--;
             GameManager.instance.PlayerHP += 25;
 
         }
-        else if (type == PotionType.Lv2)
+        else if (type == PotionType.Lv2 && portionCount_Lv2 > 0)
         {
 
             portionCount_Lv2--;
             GameManager.instance.PlayerHP += 50;
 
         }
-        else if (type == PotionType.Lv3)
+        else if (type == PotionType.Lv3 && portionCount_Lv3 > 0 )
         {
 
             portionCount_Lv3--;

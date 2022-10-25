@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private int money;
     [SerializeField] private Slider hpBar;
+    [SerializeField] private TextMeshProUGUI moneyText;
 
     [field:SerializeField] public float PlayerHP { get; set; }
 
@@ -49,7 +51,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+
+        moneyText.text = Money.ToString();
+        PlayerHP = Mathf.Clamp(PlayerHP, 0, 100);
         hpBar.value = PlayerHP;
 
     }
@@ -95,12 +99,18 @@ public class GameManager : MonoBehaviour
     {
 
 
+        Rank rank = FindObjectOfType<Rank>();
         PlayerHP -= value;
+        
 
         if(PlayerHP <= 0)
         {
 
-            //죽는거 만들기
+            rank.SetRank();
+            SetPlayerGunAble(false);
+            SetPlayerMoveAble(false);
+            Movement m = FindObjectOfType<Movement>();
+            m.Die();
 
         }
 

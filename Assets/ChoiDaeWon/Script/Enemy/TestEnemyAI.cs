@@ -98,7 +98,8 @@ public class TestEnemyAI : EnemyAICore
     {
 
         isAttack = true;
-        GameManager.instance.PlayerTakeDamage(5f);
+        Enemy enemy = GetComponent<Enemy>();
+        GameManager.instance.PlayerTakeDamage(enemy.data.attackPower);
         yield return new WaitForSeconds(1f);
         isAttack = false;
 
