@@ -44,14 +44,14 @@ public class Movement : MonoBehaviour
         
         }
         
-        Dash();
+        if(IsOtherDashPos.instance.value == false) Dash();
 
     }
 
     private void Dash()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space) && dashCoolDown == false && moveAble == true)
+        if (Input.GetKeyDown(KeyCode.Space) && dashCoolDown == false && moveAble == true && IsOtherDashPos.instance.value == false)
         {
 
             //currentDir = cam.ScreenToWorldPoint(Input.mousePosition);
