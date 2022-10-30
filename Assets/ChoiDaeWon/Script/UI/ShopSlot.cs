@@ -29,7 +29,7 @@ public class ShopSlot : MonoBehaviour, IPointerDownHandler
         if(s_Core.FindItems(itemName).itemType == EnumTypes.ItemType.Bullet)
         {
 
-            priceText.text = s_Core.FindItems(itemName).itemPrice + s_Core.items[s_Core.FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(s_Core.FindItems(itemName).bulletDataSO.bulletType)].ToString();
+            priceText.text = (s_Core.FindItems(itemName).itemPrice + s_Core.items[s_Core.FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(s_Core.FindItems(itemName).bulletDataSO.bulletType)]).ToString();
 
         }
         else

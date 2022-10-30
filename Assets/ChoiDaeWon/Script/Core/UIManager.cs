@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
 
     [SerializeField] private Image pauseImage;
+    [SerializeField] private Image stageUI;
     [SerializeField] private GameObject bulletInventoryImage;
     [SerializeField] private TextMeshProUGUI ammoText;
 
@@ -110,6 +111,32 @@ public class UIManager : MonoBehaviour
 
             GameManager.instance.able = true;
             Time.timeScale = 1;
+
+        }
+
+    }
+
+    public void StageUI(bool active)
+    {
+
+        if(active == true)
+        {
+
+            stageUI.gameObject.SetActive(true);
+            stageUI.transform.localScale = new Vector3(1, 0, 1);
+            stageUI.transform.DOScaleY(1, 0.2f);
+
+        }
+        else
+        {
+
+            stageUI.transform.DOScaleY(0, 0.2f)
+            .OnComplete(() =>
+            {
+
+                stageUI.gameObject.SetActive(false);
+
+            });
 
         }
 

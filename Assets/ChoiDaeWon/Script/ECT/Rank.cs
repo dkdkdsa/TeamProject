@@ -25,8 +25,10 @@ public class Rank : MonoBehaviour
     {
 
         rankImage.gameObject.SetActive(true);
+        GameManager.instance.SetPlayerMoveAble(false);
+        GameManager.instance.SetPlayerGunAble(false);
         
-        if (clearCount == 4 && lastPlayerHP >= 90)
+        if (clearCount == 4 || lastPlayerHP >= 90)
         {
 
             rankText.text = "Rank : S";
@@ -34,7 +36,7 @@ public class Rank : MonoBehaviour
             GameManager.instance.Money += 50;
 
         }
-        else if (clearCount == 3 && lastPlayerHP >= 75)
+        else if (clearCount == 3 || lastPlayerHP >= 75)
         {
 
             rankText.text = "Rank : A";
@@ -42,7 +44,7 @@ public class Rank : MonoBehaviour
             GameManager.instance.Money += 40;
 
         }
-        else if (clearCount == 2 && lastPlayerHP >= 50)
+        else if (clearCount == 2 || lastPlayerHP >= 50)
         {
 
             rankText.text = "Rank : B";
@@ -73,6 +75,13 @@ public class Rank : MonoBehaviour
             goldText.text = "0";
 
         }
+
+    }
+
+    public void SetClearCount()
+    {
+
+        clearCount = 0;
 
     }
 

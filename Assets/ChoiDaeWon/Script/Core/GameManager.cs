@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    private Enemy[] enemy;
+
     private void Awake()
     {
         
@@ -34,6 +36,17 @@ public class GameManager : MonoBehaviour
         hpBar.maxValue = PlayerHP;
         SaveManager saveManager = FindObjectOfType<SaveManager>();
         saveManager.SetSaveData();
+
+        enemy = FindObjectsOfType<Enemy>();
+
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Map");
+
+        foreach(var o in obj)
+        {
+
+            o.gameObject.SetActive(false);
+
+        }
 
     }
 
@@ -111,6 +124,18 @@ public class GameManager : MonoBehaviour
             SetPlayerMoveAble(false);
             Movement m = FindObjectOfType<Movement>();
             m.Die();
+
+        }
+
+    }
+
+    public void ReloadAllEnemy()
+    {
+
+        foreach(var e in enemy)
+        {
+
+            e.gameObject.SetActive(true);
 
         }
 

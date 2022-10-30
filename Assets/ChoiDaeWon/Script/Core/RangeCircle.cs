@@ -11,6 +11,17 @@ public class RangeCircle : MonoBehaviour
     [SerializeField] private Color color;
     [field:SerializeField] public Transform Target { get; private set; }
 
+    private void Start()
+    {
+        
+        if(Target == null)
+        {
+
+            Target = GameManager.instance.Player;
+
+        }
+
+    }
 
     public bool DetectRange()
     {

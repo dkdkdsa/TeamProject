@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class TestEnemyAI : EnemyAICore
 {
+
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject baseobj;
     [field:SerializeField] protected override RangeCircle range { get; set; }
     [field:SerializeField] protected override RangeCircle attackRange { get; set; }
     [field:SerializeField] protected override Enemy enemy { get; set; }
 
     private bool isAttack;
-    private IEnumerator attackCo;
+    private bool isDie;
 
     private void Awake()
     {
 
-        attackCo = AttackCo();
+
 
     }
 
@@ -29,26 +32,29 @@ public class TestEnemyAI : EnemyAICore
     protected override void StateManaging()
     {
 
-        if(enemy.hp <= 0)
+        if(enemy.hp <= 0 && isDie == false)
         {
 
-            Die();
+            isDie = true;
+            animator.SetTrigger("Die");
 
         }
 
-        if (range.DetectRange() == true && attackRange.DetectRange() == false)
+        if (range.DetectRange() == true && attackRange.DetectRange() == false && isDie == false)
         {
 
             Chase(enemy.currentSpeed);
+            Filp();
 
         }
-        else if (attackRange.DetectRange() == true)
+        else if (attackRange.DetectRange() == true && isDie == false)
         {
 
+            animator.SetBool("Walk", false);
             Attack();
 
         }
-        else if(range.DetectRange() == false && attackRange.DetectRange() == false)
+        else if(range.DetectRange() == false && attackRange.DetectRange() == false && isDie == false)
         {
 
             DontChase();
@@ -60,11 +66,13 @@ public class TestEnemyAI : EnemyAICore
     protected override void Chase(float speed)
     {
 
-        Vector2 dir = range.Target.position - transform.position;
+        animator.SetBool("Walk", true);
+
+        Vector2 dir = range.Target.position - baseobj.transform.position;
 
         dir = Vector2.ClampMagnitude(dir, 1);
 
-        transform.Translate(dir * speed * Time.deltaTime);
+        baseobj.transform.Translate(dir * speed * Time.deltaTime);
 
     }
 
@@ -74,7 +82,8 @@ public class TestEnemyAI : EnemyAICore
         if(isAttack == false)
         {
 
-            StartCoroutine(AttackCo());
+            isAttack = true;
+            animator.SetTrigger("Attack");
 
         }
 
@@ -83,23 +92,52 @@ public class TestEnemyAI : EnemyAICore
     protected override void DontChase()
     {
 
-
+        animator.SetBool("Walk", false);
 
     }
 
     protected override void Die()
     {
 
-        PoolManager.instance.Add(gameObject);
+        baseobj.gameObject.SetActive(false);
 
     }
 
-    IEnumerator AttackCo()
+    public void TakeDamage()
     {
 
-        isAttack = true;
-        Enemy enemy = GetComponent<Enemy>();
-        GameManager.instance.PlayerTakeDamage(enemy.data.attackPower);
+        if(attackRange.DetectRange() == true)
+        {
+
+            GameManager.instance.PlayerTakeDamage(enemy.data.attackPower);
+
+        }
+
+        StartCoroutine(AttDelCO());
+
+    }
+
+    private void Filp()
+    {
+
+        if(GameManager.instance.Player.position.x > baseobj.transform.position.x)
+        {
+
+            baseobj.transform.localScale = new Vector3(-1, 1, 1);
+
+        }
+        else
+        {
+
+            baseobj.transform.localScale = new Vector3(1, 1, 1);
+
+        }
+
+    }
+
+    IEnumerator AttDelCO()
+    {
+
         yield return new WaitForSeconds(1f);
         isAttack = false;
 

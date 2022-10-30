@@ -9,22 +9,22 @@ public class Movement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject dashPos;
+    [SerializeField] private GameObject rootObj;
     [SerializeField] private bool moveAble;
+    [SerializeField] private Animator animator;
 
-    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D playerRigid;
-    private Vector2 currentDir;
     private bool isDie;
     private bool dashCoolDown;
     private bool isDash;
 
+    public Vector2 currentDir;
     public bool MoveAble { get { return moveAble; } set { moveAble = value; } }
 
     private void Awake()
     {
 
-        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerRigid = GetComponent<Rigidbody2D>();
         moveAble = true;
@@ -44,14 +44,14 @@ public class Movement : MonoBehaviour
         
         }
         
-        Dash();
+        if(IsOtherDashPos.instance.value == false) Dash();
 
     }
 
     private void Dash()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space) && dashCoolDown == false && moveAble == true)
+        if (Input.GetKeyDown(KeyCode.Space) && dashCoolDown == false && moveAble == true && IsOtherDashPos.instance.value == false)
         {
 
             //currentDir = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -83,7 +83,7 @@ public class Movement : MonoBehaviour
     {
 
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
 
             currentDir = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -105,8 +105,17 @@ public class Movement : MonoBehaviour
         pointerInput = cam.ScreenToWorldPoint(pointerInput);
         Vector3 dir = (Vector3)pointerInput - transform.position;
         Vector3 result = Vector3.Cross(Vector2.up, dir);
+        bool value = result.z > 0;
 
         spriteRenderer.flipX = result.z > 0;
+
+        rootObj.transform.localScale = value switch
+        {
+
+            true => new Vector3(2, 2, 1),
+            false => new Vector3(-2, 2, 1),
+
+        };
 
     }
 
