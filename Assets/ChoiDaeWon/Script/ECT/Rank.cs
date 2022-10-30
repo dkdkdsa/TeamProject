@@ -25,6 +25,8 @@ public class Rank : MonoBehaviour
     {
 
         rankImage.gameObject.SetActive(true);
+        GameManager.instance.SetPlayerMoveAble(false);
+        GameManager.instance.SetPlayerGunAble(false);
         
         if (clearCount == 4 || lastPlayerHP >= 90)
         {
@@ -73,6 +75,13 @@ public class Rank : MonoBehaviour
             goldText.text = "0";
 
         }
+
+    }
+
+    public void SetClearCount()
+    {
+
+        clearCount = 0;
 
     }
 
