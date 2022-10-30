@@ -41,9 +41,9 @@ public class StageLoder : MonoBehaviour
 
                 GameManager.instance.SetPlayerGunAble(false);
                 GameManager.instance.SetPlayerMoveAble(false);
-                stages[i].loadEvent?.Invoke();
                 Sequence sequence = DOTween.Sequence();
                 Sequence sequence2 = DOTween.Sequence();
+                stages[i].loadEvent?.Invoke();
                 sequence
                 .Append(fadeImage.DOFade(1, 0.3f))
                 .OnComplete(() =>
