@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Enemy
   - Boss
-  - 
+  - Player
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Plants
+    uniqueID: 1956150167
+    locked: 0
+  - name: Obj
+    uniqueID: 3958371599
     locked: 0
