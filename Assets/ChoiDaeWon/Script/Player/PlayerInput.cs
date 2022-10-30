@@ -33,12 +33,12 @@ public class PlayerInput : MonoBehaviour
     private void ShopUIDisable()
     {
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
 
-            shopShow.Disable();
+        //    shopShow.Disable();
 
-        }
+        //}
 
     }
 

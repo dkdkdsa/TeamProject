@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private BoxCollider2D boxCollider;
 
+    private Vector3 originPos;
     public bool isDie { get; set; } = false;
     public float currentSpeed { get; set; }
     public float hp { get; set; }
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour, IEnemy
     private void Awake()
     {
 
+        originPos = transform.position;
         currentSpeed = originSpeed;
         hp = data.maxHP;
 
@@ -44,6 +46,13 @@ public class Enemy : MonoBehaviour, IEnemy
 
         hp -= damage;
 
-    } 
+    }
+
+    private void OnDisable()
+    {
+
+        transform.position = originPos;
+
+    }
 
 }

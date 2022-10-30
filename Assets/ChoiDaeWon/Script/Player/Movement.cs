@@ -15,11 +15,11 @@ public class Movement : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D playerRigid;
-    private Vector2 currentDir;
     private bool isDie;
     private bool dashCoolDown;
     private bool isDash;
 
+    public Vector2 currentDir;
     public bool MoveAble { get { return moveAble; } set { moveAble = value; } }
 
     private void Awake()
@@ -83,7 +83,7 @@ public class Movement : MonoBehaviour
     {
 
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
 
             currentDir = cam.ScreenToWorldPoint(Input.mousePosition);

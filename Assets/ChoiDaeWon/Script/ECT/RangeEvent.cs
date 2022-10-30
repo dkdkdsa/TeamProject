@@ -13,11 +13,20 @@ public class RangeEvent : MonoBehaviour
 
     private void Update()
     {
-        
+
+        //Debug.Log(isInvorked);
+
         if(range.DetectRange() == true && isInvorked == false)
         {
 
+            isInvorked = true;
             events.Invoke();
+
+        }
+        else if (range.DetectRange() == false)
+        {
+
+            isInvorked = false;
 
         }
 
