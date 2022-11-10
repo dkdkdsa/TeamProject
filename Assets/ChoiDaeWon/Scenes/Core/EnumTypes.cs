@@ -39,4 +39,14 @@ namespace EnumTypes
 
     }
 
+    public enum BossState
+    {
+
+        Idle,
+        Attack,
+        Die,
+        Walk
+
+    }
+
 }

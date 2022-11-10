@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int money;
     [SerializeField] private Slider hpBar;
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private AudioDataSO audioData;
 
     [field:SerializeField] public float PlayerHP { get; set; }
 
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        
+
+        new AudioManager(audioData, gameObject);
         Cam = Camera.main;
         instance = this;
         Player = FindObjectOfType<Movement>().transform;

@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 1415431234264933387}
   - component: {fileID: 1415431234264933385}
   - component: {fileID: 1415431234264933390}
+  - component: {fileID: 888522770289012101}
+  - component: {fileID: 4999096301987018525}
   m_Layer: 0
   m_Name: Big Tree
   m_TagString: Untagged
@@ -154,3 +156,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8076277, y: 0.38012147}
   m_EdgeRadius: 0
+--- !u!114 &888522770289012101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415431234264933386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f48a8d66b2adc46887f23a3a88ac01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+--- !u!114 &4999096301987018525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415431234264933386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000977b98740ff5efeb
+  m_ShapePath:
+  - {x: -0.33632374, y: -1.3459324, z: 0}
+  - {x: 0.32447243, y: -1.3459321, z: 0}
+  - {x: 0.36002636, y: -1.2021115, z: 0}
+  - {x: -0.4074316, y: -1.2021117, z: 0}
+  m_ShapePathHash: 846099837
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -336716

@@ -15,19 +15,19 @@ MonoBehaviour:
   pools:
   - poolName: Bullet
     poolObj: {fileID: 2783628268745599196, guid: cee67d8e673fe8945887f4c3cc4d9c8e, type: 3}
-    poolCount: 10
+    poolCount: 50
   - poolName: FireBullet
     poolObj: {fileID: 2783628268745599196, guid: 29de1e871f76f4c4095f90a6a49107db, type: 3}
-    poolCount: 10
+    poolCount: 50
   - poolName: IceBullet
     poolObj: {fileID: 2783628268745599196, guid: 8fc8d1d58ca84374e8d50e7182110461, type: 3}
-    poolCount: 10
+    poolCount: 50
   - poolName: GodBullet
     poolObj: {fileID: 2783628268745599196, guid: a1e5674446ab39443944e20d92d3d125, type: 3}
-    poolCount: 10
+    poolCount: 50
   - poolName: PoisonBullet
     poolObj: {fileID: 2783628268745599196, guid: 0ba9dd534da303a4fa7954338fab7dfe, type: 3}
-    poolCount: 10
+    poolCount: 50
   - poolName: LiBullet
     poolObj: {fileID: 2783628268745599196, guid: 2cd6fa446a554734e9b227f26be42f7d, type: 3}
-    poolCount: 10
+    poolCount: 50
