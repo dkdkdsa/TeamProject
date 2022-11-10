@@ -16,6 +16,14 @@ public class AudioManager
         instance = this;
 
         audioSource = obj.GetComponent<AudioSource>();
+
+        if(audioSource == null)
+        {
+
+            obj.AddComponent<AudioSource>();
+
+        }
+
         audioSource.playOnAwake = false;
 
         for(int i = 0; i < data.clips.Count; i++)

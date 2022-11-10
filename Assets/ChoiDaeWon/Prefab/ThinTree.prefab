@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 3365936636150182355}
   - component: {fileID: 3365936636150182348}
   - component: {fileID: 3365936636150182349}
+  - component: {fileID: 7356484519029888497}
   m_Layer: 0
   m_Name: ThinTree
   m_TagString: Untagged
@@ -154,3 +155,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.38807106, y: 0.15666199}
   m_EdgeRadius: 0
+--- !u!114 &7356484519029888497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365936636150182350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000977b98740ff5efeb
+  m_ShapePath:
+  - {x: -0.14492416, y: -0.9083675, z: 0}
+  - {x: 0.12201595, y: -0.9083675, z: 0}
+  - {x: 0.16210556, y: -0.81546736, z: 0}
+  - {x: -0.18501377, y: -0.78683233, z: 0}
+  m_ShapePathHash: 1576158565
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -352362

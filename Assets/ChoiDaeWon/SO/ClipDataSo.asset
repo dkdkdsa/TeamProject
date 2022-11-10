@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5cd9aa4f6e5ad40bd9863e3123532a, type: 3}
+  m_Name: ClipDataSo
+  m_EditorClassIdentifier: 
+  clips:
+  - clipName: Fire
+    clip: {fileID: 8300000, guid: e1f3ac0276b26bf449fdd65417587eb3, type: 3}
+    volume: 1
+    pitch: 1
+  - clipName: Reload
+    clip: {fileID: 8300000, guid: 07f5131d80f29ef479a32a6750d02d50, type: 3}
+    volume: 1
+    pitch: 1

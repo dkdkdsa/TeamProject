@@ -48,7 +48,7 @@ public class BulletEvents : MonoBehaviour
 
         currentFireDuration += fireDotDamageDuration[Upgrader.instance.FindUpGradeCount(BulletType.Fire)];
         
-        if(isDotDeal == false)
+        if(enemy.isDebuff == false)
         {
 
             StartCoroutine(FireDotDamage(Upgrader.instance.FindUpGradeCount(BulletType.Fire), enemy));
@@ -60,7 +60,7 @@ public class BulletEvents : MonoBehaviour
     public void Ice(Enemy enemy) 
     {
 
-        if(isIce == false)
+        if(enemy.isDebuff == false)
         {
             
             StartCoroutine(ThawCo(enemy, Upgrader.instance.FindUpGradeCount(BulletType.Ice)));
@@ -81,7 +81,7 @@ public class BulletEvents : MonoBehaviour
 
         currentPoisonDuration += poisonDotDamageDuration[Upgrader.instance.FindUpGradeCount(BulletType.Poison)];
 
-        if (isDotDeal == false)
+        if (enemy.isDebuff == false)
         {
 
             StartCoroutine(PoisonDotDamage(Upgrader.instance.FindUpGradeCount(BulletType.Poison), enemy));
@@ -101,7 +101,6 @@ public class BulletEvents : MonoBehaviour
     {
 
         yield return null;
-        isPoisonDotDeal = true;
 
         while (currentPoisonDuration > 0)
         {
@@ -114,24 +113,20 @@ public class BulletEvents : MonoBehaviour
 
         currentPoisonDuration = 0;
 
-        isPoisonDotDeal = false;
 
     }
     IEnumerator ThawCo(Enemy enemy, int upgradeCount)
     {
 
-        isIce = true;
         enemy.currentSpeed = enemy.currentSpeed - (enemy.currentSpeed * freezPower[upgradeCount]);
         yield return new WaitForSeconds(freezDuration[upgradeCount]);
         enemy.currentSpeed = enemy.originSpeed;
-        isIce = false;
 
     }
     IEnumerator FireDotDamage(int upgradeCount, Enemy enemy)
     {
 
         yield return null;
-        isDotDeal = true;
 
         while(currentFireDuration > 0)
         {
@@ -143,8 +138,6 @@ public class BulletEvents : MonoBehaviour
         }
         
         currentFireDuration = 0;
-
-        isDotDeal = false;
 
     }
     IEnumerator LiCo(int uc, Enemy enemy)

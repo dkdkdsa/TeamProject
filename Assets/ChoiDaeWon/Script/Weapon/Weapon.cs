@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
+using Cinemachine.Editor;
 
 public class Weapon : MonoBehaviour
 {
@@ -10,7 +12,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Transform firePos;
     [SerializeField] private BulletDataSO[] slot;
     [SerializeField] private float shootingDelay;
-    
+    [SerializeField] private GameObject fireLight;
+    [SerializeField] private CinemachineVirtualCamera cvcam;
+
+    private CinemachineBasicMultiChannelPerlin cbmcp;
     private int currentAmmo = 18;
     private float angle;
     private bool isDelay;
@@ -25,6 +30,7 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
 
+        cbmcp = cvcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         ammoText = "Ammo";
         ShootAble = true;
 
@@ -55,11 +61,15 @@ public class Weapon : MonoBehaviour
         if(value)
         {
 
-            cam.DOShakePosition(0.05f, new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)), 1000, 0);
+            StartCoroutine(FireShackCo());
+
+            //cam.DOShakePosition(0.05f, new Vector2(Random.Range(-5f, 5f), Random.Range(-3, 3)), 1000, 0);
+            AudioManager.instance.Play("Fire");
             PoolManager.instance.Remove(slot[0].bulletObj.gameObject.name, firePos.transform.position, Quaternion.Euler(0, 0, angle - 5));
             PoolManager.instance.Remove(slot[1].bulletObj.gameObject.name, firePos.transform.position, Quaternion.Euler(0, 0, angle));
             PoolManager.instance.Remove(slot[2].bulletObj.gameObject.name, firePos.transform.position, Quaternion.Euler(0, 0, angle + 5));
             StartCoroutine(ShootDelay(shootingDelay));
+            StartCoroutine(FireLightCo());
             currentAmmo -= 3;
 
         }
@@ -74,6 +84,7 @@ public class Weapon : MonoBehaviour
 
             isReload = true;
             ammoText = "Reload";
+            AudioManager.instance.Play("Reload");
             StartCoroutine(ReLoadCO());
 
         }
@@ -112,6 +123,14 @@ public class Weapon : MonoBehaviour
 
     }
 
+    IEnumerator FireLightCo()
+    {
+
+        fireLight.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        fireLight.gameObject.SetActive(false);
+
+    }
     IEnumerator ShootDelay(float shootingDelay)
     {
 
@@ -136,6 +155,19 @@ public class Weapon : MonoBehaviour
         isReload = false;
         ammoText = "Ammo";
 
+    }
+    IEnumerator FireShackCo()
+    {
+
+        yield return null;
+
+        cbmcp.m_AmplitudeGain = 1f;
+        cbmcp.m_FrequencyGain = 0.7f;
+
+        yield return new WaitForSeconds(0.2f);
+
+        cbmcp.m_AmplitudeGain = 0;
+        cbmcp.m_FrequencyGain = 0;
     }
 
 }

@@ -6,15 +6,18 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private BulletDataSO bulletData;
-    
+
+    private float lifeTime = 5;
     private Rigidbody2D bulletRigid;
     private int enemyLayer;
+    private float time;
 
     private void Awake()
     {
-        
+                
         bulletRigid = GetComponent<Rigidbody2D>();
         enemyLayer = LayerMask.NameToLayer("Enemy");
+        ParticleSystem particleSystem = GetComponent<ParticleSystem>();
 
     }
 
@@ -35,8 +38,17 @@ public class Bullet : MonoBehaviour
 
     private void Move()
     {
-        
+
+        time += Time.deltaTime;
         bulletRigid.velocity = transform.right * speed;
+
+        if(time >= lifeTime)
+        {
+
+            time = 0;
+            Disable();
+
+        }
 
     }
     private void OnTriggerEnter2D(Collider2D collision)

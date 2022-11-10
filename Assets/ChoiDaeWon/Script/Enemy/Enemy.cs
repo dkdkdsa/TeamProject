@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour, IEnemy
     public bool isDie { get; set; } = false;
     public float currentSpeed { get; set; }
     public float hp { get; set; }
-
+    public bool isDebuff;
 
     private void Awake()
     {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3367112875757801094}
   - component: {fileID: 3367112875757801095}
   - component: {fileID: 3367112875757801092}
+  - component: {fileID: 4689706823909288680}
   m_Layer: 0
   m_Name: MediumTree
   m_TagString: Untagged
@@ -124,6 +125,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8076277, y: 0.2022661}
   m_EdgeRadius: 0
+--- !u!114 &4689706823909288680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367112875757801093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000977b98740ff5efeb
+  m_ShapePath:
+  - {x: -0.24318123, y: -0.8950945, z: 0}
+  - {x: 0.2731552, y: -0.9100809, z: 0}
+  - {x: 0.26566172, y: -0.7384335, z: 0}
+  - {x: -0.2956338, y: -0.73843336, z: 0}
+  m_ShapePathHash: 1576892133
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -353954
 --- !u!1 &3367112877010221110
 GameObject:
   m_ObjectHideFlags: 0
