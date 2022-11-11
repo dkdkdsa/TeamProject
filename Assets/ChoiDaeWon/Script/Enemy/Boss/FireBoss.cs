@@ -7,9 +7,16 @@ using UnityEngine.Events;
 
 public class FireBoss : Boss
 {
+
+    [SerializeField] private Transform skillPos;
+    [SerializeField] private RangeCircle attackRange;
+    [SerializeField] private RangeCircle walkRange;
     [field:SerializeField] protected override Animator animator { get; set; }
     [field:SerializeField] protected override UnityEvent<Transform> SkillEvent { get; set; }
     [field:SerializeField] protected override UnityEvent DieEvent { get; set; }
+
+
+    private bool isAttackCool;
 
     protected override BossState CurrentState { get; set; } = BossState.Idle;
     protected override SpriteRenderer bossRenderer { get; set; }
@@ -31,6 +38,11 @@ public class FireBoss : Boss
     protected override void StateManager()
     {
 
+        if (attackRange.DetectRange() == true && isAttackCool == false) ChangeState(BossState.Attack);
+        else if(walkRange.DetectRange() && attackRange.DetectRange() == false) ChangeState(BossState.Walk);
+        else ChangeState(BossState.Idle);
+
+        #region Action
         Action action = CurrentState switch
         {
 
@@ -42,12 +54,23 @@ public class FireBoss : Boss
 
         };
 
+        action();
+
+        #endregion
+
     }
 
     protected override void Attack()
     {
 
+        if (isAttackCool) return;
+
+        isAttackCool = true;
+
+        StartCoroutine(AttackCoolCo());
+        StartCoroutine(SkillCo());
         
+        animator.SetTrigger(AttackHash);
 
     }
 
@@ -61,14 +84,14 @@ public class FireBoss : Boss
     protected override void Idle()
     {
 
-
+        animator.SetBool(WalkHash, false);
 
     }
 
     protected override void Walk()
     {
 
-        
+        animator.SetBool(WalkHash, true);
 
     }
 
@@ -78,6 +101,26 @@ public class FireBoss : Boss
         if (CurrentState == BossState.Die) return;
 
         CurrentState = state;
+
+    }
+
+    IEnumerator AttackCoolCo()
+    {
+
+        isAttackCool = true;
+
+        yield return new WaitForSeconds(4f);
+
+        isAttackCool = false;
+
+    }
+
+    IEnumerator SkillCo()
+    {
+
+        yield return new WaitForSeconds(1.04f);
+
+        SkillEvent?.Invoke(skillPos);
 
     }
 

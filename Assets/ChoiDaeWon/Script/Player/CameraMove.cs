@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    [SerializeField ]private Transform traget;
+    [SerializeField ] private Transform traget;
 
     private void Update()
     {
