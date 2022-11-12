@@ -31,3 +31,6 @@ MonoBehaviour:
   - poolName: LiBullet
     poolObj: {fileID: 2783628268745599196, guid: 2cd6fa446a554734e9b227f26be42f7d, type: 3}
     poolCount: 50
+  - poolName: FireSlice
+    poolObj: {fileID: 1764592445313182132, guid: ba5dcd2f750361f4da46d27b0a775616, type: 3}
+    poolCount: 50

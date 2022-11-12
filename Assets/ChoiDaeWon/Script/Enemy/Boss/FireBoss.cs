@@ -7,9 +7,18 @@ using UnityEngine.Events;
 
 public class FireBoss : Boss
 {
+
+    [SerializeField] private float speed;
+    [SerializeField] private Transform skillPos;
+    [SerializeField] private RangeCircle attackRange;
+    [SerializeField] private RangeCircle walkRange;
     [field:SerializeField] protected override Animator animator { get; set; }
     [field:SerializeField] protected override UnityEvent<Transform> SkillEvent { get; set; }
     [field:SerializeField] protected override UnityEvent DieEvent { get; set; }
+
+
+    private bool isAttackCool;
+    private bool isAnimationPlayed;
 
     protected override BossState CurrentState { get; set; } = BossState.Idle;
     protected override SpriteRenderer bossRenderer { get; set; }
@@ -25,12 +34,18 @@ public class FireBoss : Boss
     {
 
         StateManager();
+        Flip();
 
     }
 
     protected override void StateManager()
     {
 
+        if (attackRange.DetectRange() == true && isAttackCool == false) ChangeState(BossState.Attack);
+        else if(walkRange.DetectRange() && attackRange.DetectRange() == false && isAnimationPlayed == false) ChangeState(BossState.Walk);
+        else ChangeState(BossState.Idle);
+
+        #region Action
         Action action = CurrentState switch
         {
 
@@ -42,12 +57,42 @@ public class FireBoss : Boss
 
         };
 
+        action();
+
+        #endregion
+
+    }
+
+    private void Flip()
+    {
+
+        if(walkRange.DetectRange() == true && CurrentState != BossState.Attack)
+        {
+
+            transform.localScale = walkRange.Target.transform.position switch
+            {
+
+                { x:var X } when X > transform.position.x => new Vector3(-1, 1 , 1),
+                { x: var X } when X < transform.position.x => new Vector3(1, 1, 1),
+                _ => transform.localScale
+
+            };
+
+        }
+
     }
 
     protected override void Attack()
     {
 
+        if (isAttackCool) return;
+
+        isAttackCool = true;
+
+        StartCoroutine(AttackCoolCo());
+        StartCoroutine(SkillCo());
         
+        animator.SetTrigger(AttackHash);
 
     }
 
@@ -61,14 +106,20 @@ public class FireBoss : Boss
     protected override void Idle()
     {
 
-
+        animator.SetBool(WalkHash, false);
 
     }
 
     protected override void Walk()
     {
 
-        
+        animator.SetBool(WalkHash, true);
+
+        Vector2 dir = walkRange.Target.position - transform.position;
+
+        dir = Vector2.ClampMagnitude(dir, 1);
+
+        transform.Translate(dir * speed * Time.deltaTime);
 
     }
 
@@ -78,6 +129,27 @@ public class FireBoss : Boss
         if (CurrentState == BossState.Die) return;
 
         CurrentState = state;
+
+    }
+
+    IEnumerator AttackCoolCo()
+    {
+
+        isAttackCool = true;
+
+        yield return new WaitForSeconds(4f);
+
+        isAttackCool = false;
+
+    }
+
+    IEnumerator SkillCo()
+    {
+
+        isAnimationPlayed = true;
+        yield return new WaitForSeconds(1.04f);
+        isAnimationPlayed = false;
+        SkillEvent?.Invoke(skillPos);
 
     }
 

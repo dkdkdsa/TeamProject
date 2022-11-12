@@ -9,7 +9,7 @@ public class RangeCircle : MonoBehaviour
     [SerializeField] private float rangeRadius;
     [SerializeField] private bool isOutter;
     [SerializeField] private Color color;
-    [field:SerializeField] public Transform Target { get; private set; }
+    [field:SerializeField] public Transform Target { get; set; }
 
     private void Start()
     {

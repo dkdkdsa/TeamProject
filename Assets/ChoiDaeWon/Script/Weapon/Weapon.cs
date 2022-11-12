@@ -161,13 +161,13 @@ public class Weapon : MonoBehaviour
 
         yield return null;
 
-        cbmcp.m_AmplitudeGain = 1f;
-        cbmcp.m_FrequencyGain = 0.7f;
+        cbmcp.m_AmplitudeGain += 1f;
+        cbmcp.m_FrequencyGain += 0.7f;
 
         yield return new WaitForSeconds(0.2f);
 
-        cbmcp.m_AmplitudeGain = 0;
-        cbmcp.m_FrequencyGain = 0;
+        cbmcp.m_AmplitudeGain -= 1f;
+        cbmcp.m_FrequencyGain -= 0.7f;
     }
 
 }

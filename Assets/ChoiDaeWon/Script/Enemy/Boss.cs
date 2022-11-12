@@ -9,7 +9,6 @@ public abstract class Boss : MonoBehaviour
 
     protected readonly int AttackHash = Animator.StringToHash("Attack");
     protected readonly int DieHash = Animator.StringToHash("Die");
-    protected readonly int IdleHash = Animator.StringToHash("Idle");
     protected readonly int WalkHash = Animator.StringToHash("Walk");
 
     protected virtual Enemy enemy { get; private set; }
