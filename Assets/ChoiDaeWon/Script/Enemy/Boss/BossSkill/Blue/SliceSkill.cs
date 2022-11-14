@@ -22,18 +22,6 @@ public class SliceSkill : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-
-            Slice();
-
-        }
-
-    }
-
     public void Slice()
     {
 

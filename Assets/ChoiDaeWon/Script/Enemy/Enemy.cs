@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour, IEnemy
     private Vector3 originPos;
     public bool isDie { get; set; } = false;
     public float currentSpeed { get; set; }
-   [field:SerializeField] public float hp { get; set; }
+    [field:SerializeField] public float hp { get; set; }
     public bool isDebuff;
 
     private void Awake()
