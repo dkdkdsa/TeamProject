@@ -34,3 +34,12 @@ MonoBehaviour:
   - poolName: FireSlice
     poolObj: {fileID: 1764592445313182132, guid: ba5dcd2f750361f4da46d27b0a775616, type: 3}
     poolCount: 50
+  - poolName: Stone
+    poolObj: {fileID: 6373705759803758116, guid: d073e8981f114534993adf216a772333, type: 3}
+    poolCount: 50
+  - poolName: Gob
+    poolObj: {fileID: 6613788766102911914, guid: 4c4d8e8c2b51a6e4c902e5306b087f79, type: 3}
+    poolCount: 20
+  - poolName: Slice
+    poolObj: {fileID: 5527397652078896000, guid: b4b25c4a2cc16c344b46ab76b9d5add1, type: 3}
+    poolCount: 20

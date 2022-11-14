@@ -13,7 +13,7 @@ public abstract class Boss : MonoBehaviour
 
     protected virtual Enemy enemy { get; private set; }
 
-    protected abstract UnityEvent<Transform> SkillEvent { get; set; }
+    protected virtual UnityEvent<Transform> SkillEvent { get; set; }
     protected abstract UnityEvent DieEvent { get; set; }
     protected abstract Animator animator { get; set; }
     protected abstract SpriteRenderer bossRenderer { get; set; }

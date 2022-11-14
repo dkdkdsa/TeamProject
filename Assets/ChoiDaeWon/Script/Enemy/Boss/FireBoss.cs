@@ -99,7 +99,7 @@ public class FireBoss : Boss
     protected override void Die()
     {
 
-
+        animator.SetTrigger(DieHash);
 
     }
 

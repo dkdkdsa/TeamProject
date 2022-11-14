@@ -6,10 +6,10 @@ public class StoneAI : MonoBehaviour
 {
 
     [SerializeField] private RangeCircle rangeCircle;
+    [SerializeField] private string summoningEnemy;
 
     private Enemy thisEnemy;
     private bool isHeal;
-    private string summoningEnemy;
 
     private void Update()
     {
@@ -20,7 +20,7 @@ public class StoneAI : MonoBehaviour
             StartCoroutine("HealCo");
 
         }
-        else
+        else if(rangeCircle.DetectRange() == false)
         {
 
             isHeal = false;
@@ -35,13 +35,15 @@ public class StoneAI : MonoBehaviour
 
         }
 
+       
+
     }
 
-    public void Spawn(Enemy target, Vector2 pos)
+    public void Spawn(Enemy target)
     {
 
         rangeCircle.Target = target.transform;
-        transform.position = pos;
+        thisEnemy = GetComponent<Enemy>();
         StartCoroutine("SummonCo");
 
     }
@@ -65,11 +67,11 @@ public class StoneAI : MonoBehaviour
             if(enemy.hp > 0)
             {
 
-                enemy.hp += 3;
+                enemy.hp += 10;
                 yield return null;
 
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
 
         }
 
@@ -86,7 +88,10 @@ public class StoneAI : MonoBehaviour
             for(int i = 0; i < 3; i++)
             {
 
-                PoolManager.instance.Remove(summoningEnemy, transform.position, Quaternion.identity);
+                PoolManager.instance.Remove(summoningEnemy, 
+                    new Vector2(Random.Range(transform.position.x - 1, transform.position.x + 1)
+                    , Random.Range(transform.position.y + 1, transform.position.y -1))
+                    , Quaternion.identity);
                 yield return null;
 
             }
