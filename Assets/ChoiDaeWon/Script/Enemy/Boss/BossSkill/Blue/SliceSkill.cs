@@ -17,8 +17,8 @@ public class SliceSkill : MonoBehaviour
 
     private void Awake()
     {
-        
-        cbmcp = cvcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        cbmcp = FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
     }
 

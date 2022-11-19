@@ -43,3 +43,12 @@ MonoBehaviour:
   - poolName: Slice
     poolObj: {fileID: 5527397652078896000, guid: b4b25c4a2cc16c344b46ab76b9d5add1, type: 3}
     poolCount: 20
+  - poolName: Fire
+    poolObj: {fileID: 3838539631040049117, guid: dfb5de36e36b2564bb57dfea05904faf, type: 3}
+    poolCount: 3
+  - poolName: Red
+    poolObj: {fileID: 7388861177164459485, guid: c909fad64be4efb459792d4ffa75c77f, type: 3}
+    poolCount: 3
+  - poolName: Blue
+    poolObj: {fileID: 7151448075437939859, guid: 34a9e0d0db485cd4da25f4963aa812fa, type: 3}
+    poolCount: 3

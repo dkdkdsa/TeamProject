@@ -29,15 +29,17 @@ public class BlueBoss : Boss
     private void Flip()
     {
 
-        if (walkRange.DetectRange() == true && CurrentState != BossState.Attack)
+
+
+        if (walkRange.DetectRange() == true)
         {
 
-            transform.localScale = walkRange.Target.transform.position switch
+            bossRenderer.flipX = walkRange.Target.transform.position switch
             {
 
-                { x: var X } when X > transform.position.x => new Vector3(-1, 1, 1),
-                { x: var X } when X < transform.position.x => new Vector3(1, 1, 1),
-                _ => transform.localScale
+                { x: var X } when X > transform.position.x => false,
+                { x: var X } when X < transform.position.x => true,
+                _ => bossRenderer.flipX
 
             };
 
@@ -69,6 +71,12 @@ public class BlueBoss : Boss
 
     }
 
+    public void DieEvnet()
+    {
+
+        PoolManager.instance.Add(gameObject);
+
+    }
     protected override void StateManager()
     {
 

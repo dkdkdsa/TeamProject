@@ -132,6 +132,13 @@ public class FireBoss : Boss
 
     }
 
+    public void DieEvnet()
+    {
+
+        PoolManager.instance.Add(gameObject);
+
+    }
+
     IEnumerator AttackCoolCo()
     {
 

@@ -15,8 +15,8 @@ public class RedBossSkill : MonoBehaviour
 
     private void Awake()
     {
-        
-        cbmcp = cvcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        cbmcp = FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
     }
 
@@ -59,6 +59,30 @@ public class RedBossSkill : MonoBehaviour
         isDash = true;
         endPos = GameManager.instance.Player.position;
         
+    }
+
+    public void Slice()
+    {
+
+        bool flip = GetComponent<SpriteRenderer>().flipX;
+
+        Vector2 boxSize;
+        boxSize = flip ? new Vector2(-3, 4) : new Vector2(3, 4);
+
+        if (Physics2D.BoxCast(transform.position, new Vector2(2,2), 0, Vector2.zero, 0, LayerMask.GetMask("Player")))
+        {
+
+            GameManager.instance.PlayerTakeDamage(20);
+
+        }
+
+    }
+
+    public void DieEvnet()
+    {
+
+        PoolManager.instance.Add(gameObject);
+
     }
 
     IEnumerator ShackCo()

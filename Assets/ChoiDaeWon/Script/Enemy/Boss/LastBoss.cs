@@ -5,17 +5,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RedBoss : Boss
+public class LastBoss : Boss
 {
+
 
     [SerializeField] private RangeCircle walkRange;
     [SerializeField] private RangeCircle attackRange;
     [SerializeField] private Enemy thisEnemy;
+    [SerializeField] private GameObject baseObj;
     [SerializeField] private float speed;
-    [field:SerializeField]protected override Animator animator { get; set; }
+
+    [field:SerializeField] protected new UnityEvent<Animator, SpriteRenderer> SkillEvent { get; set; }
+    [field: SerializeField] protected override Animator animator { get; set; }
     [field:SerializeField] protected override SpriteRenderer bossRenderer { get; set; }
 
-    private bool attackCool;
     private bool isAttack;
 
     protected override UnityEvent DieEvent { get; set; }
@@ -36,27 +39,27 @@ public class RedBoss : Boss
     private void StateChanger()
     {
 
-        if(walkRange.DetectRange() && CurrentState != BossState.Attack && (!attackRange.DetectRange() || isAttack == true))
+        if (walkRange.DetectRange() && CurrentState != BossState.Attack && !attackRange.DetectRange() && isAttack == false)
         {
 
             ChangeState(BossState.Walk);
 
         }
-        else if(attackRange.DetectRange() && CurrentState != BossState.Attack && attackCool == false && isAttack == false)
+        else if (attackRange.DetectRange() && CurrentState != BossState.Attack && isAttack == false)
         {
 
             ChangeState(BossState.Attack);
-            
+
 
         }
-        else if(!attackRange.DetectRange() && !walkRange.DetectRange())
+        else if (!attackRange.DetectRange() && !walkRange.DetectRange())
         {
 
             ChangeState(BossState.Idle);
 
         }
 
-        if(thisEnemy.hp <= 0)
+        if (thisEnemy.hp <= 0)
         {
 
             ChangeState(BossState.Die);
@@ -68,15 +71,15 @@ public class RedBoss : Boss
     private void Flip()
     {
 
-        if (walkRange.DetectRange() == true)
+        if (walkRange.DetectRange() == true && CurrentState != BossState.Attack)
         {
 
-            bossRenderer.flipX = walkRange.Target.transform.position switch
+            baseObj.transform.localScale = walkRange.Target.transform.position switch
             {
 
-                { x: var X } when X > transform.position.x => false,
-                { x: var X } when X < transform.position.x => true,
-                _ => bossRenderer.flipX
+                { x: var X } when X > transform.parent.parent.position.x => new Vector3(-1, 1, 1),
+                { x: var X } when X < transform.parent.parent.position.x => new Vector3(1, 1, 1),
+                _ => baseObj.transform.localScale
 
             };
 
@@ -107,7 +110,18 @@ public class RedBoss : Boss
 
         if (isAttack) return;
         isAttack = true;
-        animator.SetTrigger(AttackHash);
+        try
+        {
+
+            SkillEvent?.Invoke(animator, bossRenderer);
+
+        }
+        catch (Exception)
+        {
+
+            Debug.LogWarning("에러발생 확인 바람");
+
+        }
 
     }
 
@@ -131,27 +145,11 @@ public class RedBoss : Boss
 
         animator.SetBool(WalkHash, true);
 
-        Vector2 dir = walkRange.Target.position - transform.position;
+        Vector2 dir = walkRange.Target.position - transform.parent.parent.position;
 
         dir = Vector2.ClampMagnitude(dir, 1);
 
-        transform.Translate(dir * speed * Time.deltaTime);
-
-    }
-
-    public override void ChangeState(BossState state)
-    {
-
-        CurrentState = state;
-
-    }
-
-    public void EndDashEvent()
-    {
-
-        StartCoroutine(DashCoolDown());
-        ChangeState(BossState.Walk);
-        isAttack = false;
+        transform.parent.parent.Translate(dir * speed * Time.deltaTime);
 
     }
 
@@ -162,12 +160,18 @@ public class RedBoss : Boss
 
     }
 
-    IEnumerator DashCoolDown()
+    public override void ChangeState(BossState state)
     {
 
-        attackCool = true;
-        yield return new WaitForSeconds(4f);
-        attackCool = false;
+        CurrentState = state;
+
+    }
+
+    public void EndAnimeEvent()
+    {
+
+        ChangeState(BossState.Walk);
+        isAttack = false;
 
     }
 
