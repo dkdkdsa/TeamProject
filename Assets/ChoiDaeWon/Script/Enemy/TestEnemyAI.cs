@@ -143,4 +143,11 @@ public class TestEnemyAI : EnemyAICore
 
     }
 
+    private void OnDisable()
+    {
+
+        isDie = false;
+
+    }
+
 }

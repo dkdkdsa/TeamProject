@@ -11,15 +11,9 @@ public class Rank : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rankText;
     [SerializeField] private TextMeshProUGUI goldText;
 
-    private int clearCount = 0;
+
     private float lastPlayerHP;
 
-    public void AddClearCount()
-    {
-
-        clearCount++;
-
-    }
 
     public void SetRank()
     {
@@ -27,8 +21,10 @@ public class Rank : MonoBehaviour
         rankImage.gameObject.SetActive(true);
         GameManager.instance.SetPlayerMoveAble(false);
         GameManager.instance.SetPlayerGunAble(false);
-        
-        if (clearCount == 4 || lastPlayerHP >= 90)
+
+        lastPlayerHP = GameManager.instance.PlayerHP;
+
+        if (lastPlayerHP >= 90)
         {
 
             rankText.text = "Rank : S";
@@ -36,7 +32,7 @@ public class Rank : MonoBehaviour
             GameManager.instance.Money += 50;
 
         }
-        else if (clearCount == 3 || lastPlayerHP >= 75)
+        else if (lastPlayerHP >= 75)
         {
 
             rankText.text = "Rank : A";
@@ -44,7 +40,7 @@ public class Rank : MonoBehaviour
             GameManager.instance.Money += 40;
 
         }
-        else if (clearCount == 2 || lastPlayerHP >= 50)
+        else if (lastPlayerHP >= 50)
         {
 
             rankText.text = "Rank : B";
@@ -52,7 +48,7 @@ public class Rank : MonoBehaviour
             GameManager.instance.Money += 30;
 
         }
-        else if (clearCount == 1 || lastPlayerHP >= 15)
+        else if (lastPlayerHP >= 15)
         {
 
             rankText.text = "Rank : C";
@@ -60,7 +56,7 @@ public class Rank : MonoBehaviour
             GameManager.instance.Money += 20;
 
         }
-        else if (clearCount > 0 || lastPlayerHP >= 10)
+        else if (lastPlayerHP >= 10)
         {
 
             rankText.text = "Rank : D";
@@ -75,13 +71,6 @@ public class Rank : MonoBehaviour
             goldText.text = "0";
 
         }
-
-    }
-
-    public void SetClearCount()
-    {
-
-        clearCount = 0;
 
     }
 

@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StoneSummoner : MonoBehaviour
 {
 
     [SerializeField] private Vector2 size;
-
-    [SerializeField]private Enemy target;
+    [SerializeField] private UnityEvent clearEvent; 
+    [SerializeField] private Enemy target;
 
     private void Awake()
     {
@@ -36,8 +37,11 @@ public class StoneSummoner : MonoBehaviour
 
             yield return new WaitForSeconds(30f);
 
+
         }
 
+        Physics2D.BoxCast(transform.position, size, 0, Vector2.left, 0, LayerMask.GetMask("Enemy")).transform.gameObject.GetComponent<Enemy>().gameObject.SetActive(false);
+        FindObjectOfType<Rank>().SetRank();
         yield return null;
 
     }

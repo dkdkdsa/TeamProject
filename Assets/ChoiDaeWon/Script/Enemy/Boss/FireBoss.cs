@@ -36,6 +36,12 @@ public class FireBoss : Boss
         StateManager();
         Flip();
 
+        if(enemy.hp >= 0)
+        {
+            Die();
+
+        }
+
     }
 
     protected override void StateManager()

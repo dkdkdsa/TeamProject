@@ -34,4 +34,9 @@ public class ObjectRenderSetter : MonoBehaviour
 
     }
 
+    private void OnWillRenderObject()
+    {
+        
+    }
+
 }

@@ -143,4 +143,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void SetHp(float f)
+    {
+
+        PlayerHP = f;
+
+    }
+
 }

@@ -7,11 +7,22 @@ public class FireSlice : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private float damage;
+    private float time;
 
     private void Update()
     {
 
+        time += Time.deltaTime;
+
         Move();
+
+        if (time >= 3)
+        {
+
+            time = 0;
+            PoolManager.instance.Add(gameObject);
+
+        }
 
     }
 

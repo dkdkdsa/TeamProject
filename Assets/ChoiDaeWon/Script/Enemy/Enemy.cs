@@ -52,6 +52,8 @@ public class Enemy : MonoBehaviour, IEnemy
     {
 
         transform.position = originPos;
+        hp = data.maxHP;
+        isDie = false;
 
     }
 

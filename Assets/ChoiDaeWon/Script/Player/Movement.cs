@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject rootObj;
     [SerializeField] private bool moveAble;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject startPos;
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D playerRigid;
@@ -28,6 +29,8 @@ public class Movement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerRigid = GetComponent<Rigidbody2D>();
         moveAble = true;
+        transform.position = startPos.transform.position;
+        currentDir = startPos.transform.position;
 
     }
 
@@ -126,6 +129,13 @@ public class Movement : MonoBehaviour
 
         isDie = true;
         animator.SetTrigger("Die");
+
+    }
+
+    public void Receve()
+    {
+
+        isDie = false;
 
     }
 
