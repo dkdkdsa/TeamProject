@@ -14,7 +14,7 @@ public class FireBossSkill : MonoBehaviour
     private void Awake()
     {
 
-        cbmcp = cvcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cbmcp = FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
     }
 
@@ -29,6 +29,14 @@ public class FireBossSkill : MonoBehaviour
             StartCoroutine(ShackCo());
 
         }
+
+    
+    }
+
+    public void DieEvnet()
+    {
+
+        PoolManager.instance.Add(gameObject);
 
     }
 
