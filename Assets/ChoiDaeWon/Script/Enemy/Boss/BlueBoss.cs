@@ -17,7 +17,7 @@ public class BlueBoss : Boss
     protected override BossState CurrentState { get; set; }
 
     private bool skillCool;
-
+    private bool isDie;
     private void Update()
     {
 
@@ -62,6 +62,8 @@ public class BlueBoss : Boss
     protected override void Die()
     {
 
+        if (isDie) return;
+        isDie = true;
         animator.SetTrigger(DieHash);
 
     }
@@ -161,6 +163,14 @@ public class BlueBoss : Boss
         yield return new WaitForSeconds(5f);
 
         skillCool = false;
+
+    }
+
+    private void OnDisable()
+    {
+
+        isDie = false;
+        enemy.hp = enemy.data.maxHP;
 
     }
 

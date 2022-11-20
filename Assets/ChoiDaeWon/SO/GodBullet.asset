@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654f4012e1885a847940b7df53a1e304, type: 3}
   m_Name: GodBullet
   m_EditorClassIdentifier: 
-  bulletSprite: {fileID: 21300000, guid: 9f505aac594d4db419cfb1a0beb29afc, type: 3}
+  bulletSprite: {fileID: 21300000, guid: c4bfc66e79e9f2146a82dca187e626fb, type: 3}
   bulletObj: {fileID: 2783628268745599196, guid: a1e5674446ab39443944e20d92d3d125, type: 3}
   bulletType: 3
   bulletExtraDamage: 0

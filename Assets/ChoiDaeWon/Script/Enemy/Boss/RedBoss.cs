@@ -171,4 +171,12 @@ public class RedBoss : Boss
 
     }
 
+    private void OnDisable()
+    {
+
+        ChangeState(BossState.Idle);
+        enemy.hp = enemy.data.maxHP;
+
+    }
+
 }

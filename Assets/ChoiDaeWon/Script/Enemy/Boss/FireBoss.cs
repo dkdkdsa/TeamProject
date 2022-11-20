@@ -18,6 +18,7 @@ public class FireBoss : Boss
 
 
     private bool isAttackCool;
+    private bool isDie;
     private bool isAnimationPlayed;
 
     protected override BossState CurrentState { get; set; } = BossState.Idle;
@@ -33,10 +34,11 @@ public class FireBoss : Boss
     private void Update()
     {
 
+        if (isDie) return;
         StateManager();
         Flip();
 
-        if(enemy.hp >= 0)
+        if(enemy.hp <= 0)
         {
             Die();
 
@@ -105,6 +107,8 @@ public class FireBoss : Boss
     protected override void Die()
     {
 
+        if(isDie) return;
+        isDie = true;
         animator.SetTrigger(DieHash);
 
     }
@@ -163,6 +167,14 @@ public class FireBoss : Boss
         yield return new WaitForSeconds(1.04f);
         isAnimationPlayed = false;
         SkillEvent?.Invoke(skillPos);
+
+    }
+
+    private void OnDisable()
+    {
+
+        isDie = false;
+        enemy.hp = enemy.data.maxHP;
 
     }
 

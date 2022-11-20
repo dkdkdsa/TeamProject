@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654f4012e1885a847940b7df53a1e304, type: 3}
   m_Name: Poison
   m_EditorClassIdentifier: 
-  bulletSprite: {fileID: 21300000, guid: c6b94df2f7daa39418f418ba89171162, type: 3}
+  bulletSprite: {fileID: 21300000, guid: 4e1c8a4844cf9a647a2d2982d7d9942a, type: 3}
   bulletObj: {fileID: 2783628268745599196, guid: 0ba9dd534da303a4fa7954338fab7dfe, type: 3}
   bulletType: 4
   bulletExtraDamage: 0

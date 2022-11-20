@@ -10,6 +10,8 @@ public class StoneSummoner : MonoBehaviour
     [SerializeField] private UnityEvent clearEvent; 
     [SerializeField] private Enemy target;
 
+    private bool clear;
+
     private void Awake()
     {
 
@@ -17,7 +19,22 @@ public class StoneSummoner : MonoBehaviour
         StartCoroutine("SummonCo");
 
     }
+    private void Update()
+    {
 
+        if(target.hp <= 0)
+        {
+
+            if (clear) return;
+            clear = true;
+            Physics2D.BoxCast(transform.position, size, 0, Vector2.left, 0, LayerMask.GetMask("Enemy")).transform.gameObject.GetComponent<Enemy>().gameObject.SetActive(false);
+            FindObjectOfType<Rank>().SetRank();
+            clearEvent?.Invoke();
+
+
+        }
+
+    }
 
     IEnumerator SummonCo()
     {
@@ -40,8 +57,7 @@ public class StoneSummoner : MonoBehaviour
 
         }
 
-        Physics2D.BoxCast(transform.position, size, 0, Vector2.left, 0, LayerMask.GetMask("Enemy")).transform.gameObject.GetComponent<Enemy>().gameObject.SetActive(false);
-        FindObjectOfType<Rank>().SetRank();
+
         yield return null;
 
     }

@@ -10,7 +10,7 @@ public class Items
     public ItemType itemType;
     public PotionType potionType;
     public BulletDataSO bulletDataSO;
-    public Sprite itemSprite;
+    public Sprite[] itemSprite;
     public string itemName;
     public int itemPrice;
     public int[] upgradeExtraPrice;
@@ -106,8 +106,8 @@ public class ShopCore : MonoBehaviour
 
         int r = Random.Range(0, items.Count);
 
-        sprite = items[r].itemSprite;
         itemName = items[r].itemName;
+        sprite = items[r].itemSprite[Upgrader.instance.FindUpGradeCount(items[r].bulletDataSO.bulletType)];
 
     }
     
@@ -124,7 +124,7 @@ public class ShopCore : MonoBehaviour
 
                 GameManager.instance.Money -= (items[FindItem(itemName)].itemPrice + items[FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(items[FindItem(itemName)].bulletDataSO.bulletType)]);
                 Upgrader.instance.UpGrade(items[FindItem(itemName)].bulletDataSO.bulletType);
-                
+
             }
 
         }

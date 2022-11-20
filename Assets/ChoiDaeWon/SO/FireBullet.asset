@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654f4012e1885a847940b7df53a1e304, type: 3}
   m_Name: FireBullet
   m_EditorClassIdentifier: 
-  bulletSprite: {fileID: 21300000, guid: 67aa81512389ea246a5144400a5f94ea, type: 3}
+  bulletSprite: {fileID: 21300000, guid: d93d26887e90638459fb0faf2c79e635, type: 3}
   bulletObj: {fileID: 2783628268745599196, guid: 29de1e871f76f4c4095f90a6a49107db, type: 3}
   bulletType: 1
   bulletExtraDamage: 0

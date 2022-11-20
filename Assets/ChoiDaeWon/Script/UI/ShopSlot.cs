@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class ShopSlot : MonoBehaviour, IPointerDownHandler
 {
 
     [SerializeField] private TextMeshProUGUI priceText;
+    [SerializeField] private Image image;
 
     private ShopCore s_Core;
 
@@ -30,6 +31,7 @@ public class ShopSlot : MonoBehaviour, IPointerDownHandler
         {
 
             priceText.text = (s_Core.FindItems(itemName).itemPrice + s_Core.items[s_Core.FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(s_Core.FindItems(itemName).bulletDataSO.bulletType)]).ToString();
+            image.sprite = s_Core.FindItems(itemName).itemSprite[Upgrader.instance.FindUpGradeCount(s_Core.FindItems(itemName).bulletDataSO.bulletType)];
 
         }
         else
