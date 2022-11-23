@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Bullet : MonoBehaviour
 {
 
     [SerializeField] private float speed;
     [SerializeField] private BulletDataSO bulletData;
+    [SerializeField] private string hitEffectName;
 
     private float lifeTime = 5;
     private Rigidbody2D bulletRigid;
@@ -32,6 +34,7 @@ public class Bullet : MonoBehaviour
     private void Disable()
     {
 
+        PoolManager.instance.Remove(hitEffectName, transform.position, Quaternion.identity);
         PoolManager.instance.Add(gameObject);
 
     }
@@ -57,7 +60,7 @@ public class Bullet : MonoBehaviour
         if(collision.gameObject.layer == enemyLayer)
         {
 
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            Enemy enemy = collision.gameObject.GetComponentInChildren<Enemy>();
             enemy.TakeAttack(ValueManager.instance.PlayerDamage(Upgrader.instance.FindExtraDamage(bulletData.bulletType)));
             Upgrader.instance.UpgradeEvent(bulletData.bulletType, enemy);
             Disable();

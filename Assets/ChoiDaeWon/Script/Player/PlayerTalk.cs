@@ -36,14 +36,10 @@ public class PlayerTalk : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && value == true)
+        if (Input.GetKeyDown(KeyCode.E) && value == true && FindObjectOfType<ShopShow>().isShow == false)
         {
 
-            Conversation conversation = value.GetComponent<Conversation>();
-            textBox.gameObject.SetActive(true);
-            textBox.Set(conversation);
-            conversation.Init();
-            conversation.Click();
+            FindObjectOfType<ShopShow>().Show();
 
         }
 

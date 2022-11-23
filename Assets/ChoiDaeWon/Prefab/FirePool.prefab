@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 2955059925020258786}
   - component: {fileID: 4624155807277798886}
   - component: {fileID: 5528213479583734922}
+  - component: {fileID: 3873400019479200436}
   m_Layer: 6
   m_Name: FirePool
   m_TagString: Untagged
@@ -318,6 +319,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 3834643954663205754}
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3873400019479200436}
+        m_TargetAssemblyTypeName: HitEvent, Assembly-CSharp
+        m_MethodName: Hit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   data: {fileID: 11400000, guid: 9118493e7fcb08c4091b27b7ce159b06, type: 2}
   <originSpeed>k__BackingField: 2
   <Type>k__BackingField: 2
@@ -358,6 +374,7 @@ MonoBehaviour:
   <DieEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  <bossRenderer>k__BackingField: {fileID: 9180682428843606285}
 --- !u!61 &5528213479583734922
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -384,6 +401,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.535324, y: 2.7900393}
   m_EdgeRadius: 0
+--- !u!114 &3873400019479200436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838539631040049117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65bc7f8685dcb94b8053d77c854175e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3919151169702683170
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering;
 
 public class ShopShow : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ShopShow : MonoBehaviour
     private ShopCore core;
     private SlotShow[] slots;
     private bool isReset;
+
+    public bool isShow;
 
     private void Awake()
     {
@@ -27,6 +30,7 @@ public class ShopShow : MonoBehaviour
         GameManager.instance.SetPlayerGunAble(true);
         GameManager.instance.SetPlayerMoveAble(true);
         transform.DOLocalMove(new Vector2(0, 1100), 1);
+        isShow = false;
 
     }
 
@@ -42,6 +46,7 @@ public class ShopShow : MonoBehaviour
         {
 
             StartCoroutine(SlotShowCo());
+            isShow = true;
 
         });
 

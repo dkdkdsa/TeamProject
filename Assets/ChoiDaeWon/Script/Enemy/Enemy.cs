@@ -4,11 +4,13 @@ using UnityEngine;
 using DG.Tweening;
 using Interfaces;
 using EnumTypes;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour, IEnemy 
 {
 
     [SerializeField] private GameObject hpBar;
+    [SerializeField] private UnityEvent hitEvent;
     public EnemyDataSO data;
 
     [field: SerializeField] public float originSpeed { get; set; }
@@ -44,6 +46,8 @@ public class Enemy : MonoBehaviour, IEnemy
     public void TakeAttack(float damage)
     {
 
+        if (gameObject.activeSelf == false) return;
+        PoolManager.instance.Remove("DamageText", new Vector2(Random.Range(transform.position.x + 1, transform.position.x - 1), transform.position.y), Quaternion.identity).GetComponent<DamageText>().Show(damage);
         hp -= damage;
 
     }

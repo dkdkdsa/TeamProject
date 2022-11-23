@@ -72,7 +72,7 @@ public class PlayerInput : MonoBehaviour
     private void Pause()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && FindObjectOfType<TextBox>().gameObject.activeSelf == false)
         {
 
             UIManager.instance.PauseUIOpenAndClouse();

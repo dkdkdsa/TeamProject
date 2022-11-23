@@ -22,7 +22,7 @@ public class FireBoss : Boss
     private bool isAnimationPlayed;
 
     protected override BossState CurrentState { get; set; } = BossState.Idle;
-    protected override SpriteRenderer bossRenderer { get; set; }
+    [field:SerializeField] protected override SpriteRenderer bossRenderer { get; set; }
 
     private void Start()
     {
@@ -77,12 +77,12 @@ public class FireBoss : Boss
         if(walkRange.DetectRange() == true && CurrentState != BossState.Attack)
         {
 
-            transform.localScale = walkRange.Target.transform.position switch
+            bossRenderer.flipX = walkRange.Target.transform.position switch
             {
 
-                { x:var X } when X > transform.position.x => new Vector3(-1, 1 , 1),
-                { x: var X } when X < transform.position.x => new Vector3(1, 1, 1),
-                _ => transform.localScale
+                { x: var X } when X > transform.position.x => true,
+                { x: var X } when X < transform.position.x => false,
+                _ => bossRenderer.flipX
 
             };
 
@@ -99,8 +99,21 @@ public class FireBoss : Boss
 
         StartCoroutine(AttackCoolCo());
         StartCoroutine(SkillCo());
-        
-        animator.SetTrigger(AttackHash);
+
+        int r = UnityEngine.Random.Range(0, 2);
+
+        if(r == 0)
+        {
+
+            animator.SetTrigger(AttackHash);
+
+        }
+        else
+        {
+
+            animator.SetTrigger("Roar");
+
+        }
 
     }
 

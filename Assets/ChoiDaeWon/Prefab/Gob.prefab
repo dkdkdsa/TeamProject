@@ -3079,6 +3079,7 @@ GameObject:
   - component: {fileID: 6613788766102911918}
   - component: {fileID: 6613788766102911919}
   - component: {fileID: 6613788766102911917}
+  - component: {fileID: -788636993530828811}
   m_Layer: 6
   m_Name: Gob
   m_TagString: Untagged
@@ -3163,7 +3164,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0048599243, y: 0.41552955}
@@ -3192,9 +3193,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 6613788764865957891}
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -788636993530828811}
+        m_TargetAssemblyTypeName: HitEvent, Assembly-CSharp
+        m_MethodName: Hit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   data: {fileID: 11400000, guid: e65ce13dae071c34ca9a0b7908a46103, type: 2}
   <originSpeed>k__BackingField: 4
   <Type>k__BackingField: 0
+  <hp>k__BackingField: 0
+  isDebuff: 0
 --- !u!114 &6613788766102911919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3207,7 +3225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e2afd1bd3cbfb4a85dd1463379bf71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeRadius: 6
+  rangeRadius: 30
   isOutter: 0
   color: {r: 0, g: 0, b: 1, a: 1}
   <Target>k__BackingField: {fileID: 0}
@@ -3227,6 +3245,18 @@ MonoBehaviour:
   isOutter: 0
   color: {r: 1, g: 0, b: 0, a: 1}
   <Target>k__BackingField: {fileID: 0}
+--- !u!114 &-788636993530828811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613788766102911914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65bc7f8685dcb94b8053d77c854175e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6952582597507181121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,7 +3268,7 @@ GameObject:
   - component: {fileID: 3446581063021268730}
   - component: {fileID: 3269360301370275340}
   - component: {fileID: 2342002341603578711}
-  - component: {fileID: 6952582597507181134}
+  - component: {fileID: 6909087960227348294}
   m_Layer: 0
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -3292,7 +3322,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6952582597507181134
+--- !u!114 &6909087960227348294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

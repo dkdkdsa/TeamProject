@@ -33,4 +33,24 @@ public abstract class Boss : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+
+        try
+        {
+
+
+            enemy = GetComponent<Enemy>();
+            enemy.hp = enemy.data.maxHP;
+
+        }
+        catch (System.Exception)
+        {
+
+
+
+        }
+
+    }
+
 }

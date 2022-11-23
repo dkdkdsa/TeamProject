@@ -42,4 +42,11 @@ public class StartSceneEvents : MonoBehaviour
 
     }
 
+    public void Exit()
+    {
+
+        Application.Quit();
+
+    }
+
 }

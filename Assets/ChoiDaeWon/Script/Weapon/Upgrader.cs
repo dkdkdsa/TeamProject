@@ -1,8 +1,10 @@
+#define Reset
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EnumTypes;
 using UnityEngine.Events;
+using System;
 
 [System.Serializable]
 public class EventList
@@ -26,6 +28,32 @@ public class Upgrader : MonoBehaviour
     {
         
         instance = this;
+
+        for(int i = 0; i < list.Count; i++)
+        {
+
+            try
+            {
+
+                list[i].upgradeCount = PlayerPrefs.GetInt(list[i].bulletType.ToString());
+
+            }
+            catch (Exception)
+            {
+
+                list[i].upgradeCount = 0;
+
+            }
+
+
+        }
+
+    }
+
+    private void Update()
+    {
+
+        Re();
 
     }
 
@@ -152,5 +180,41 @@ public class Upgrader : MonoBehaviour
         return value;
 
     }
-    
+
+
+    public void Save()
+    {
+        
+        foreach(var a in list)
+        {
+
+            PlayerPrefs.SetInt(a.bulletType.ToString(), a.upgradeCount);
+
+        }
+
+    }
+
+    public void Re()
+    {
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            foreach (var a in list)
+            {
+
+                PlayerPrefs.SetInt(a.bulletType.ToString(), 0);
+
+            }
+            for (int i = 0; i < list.Count; i++)
+            {
+
+                list[i].upgradeCount = 0;
+
+            }
+        }
+#endif
+
+    }
+
 }

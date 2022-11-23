@@ -14,10 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - clipName: Fire
-    clip: {fileID: 8300000, guid: e1f3ac0276b26bf449fdd65417587eb3, type: 3}
+    clip: {fileID: 8300000, guid: 3f02857847e22a349abbd585d5c34d97, type: 3}
     volume: 1
     pitch: 1
   - clipName: Reload
-    clip: {fileID: 8300000, guid: 07f5131d80f29ef479a32a6750d02d50, type: 3}
+    clip: {fileID: 8300000, guid: 6a0eefd66a1c7ff4bb2754900483e6a3, type: 3}
+    volume: 1
+    pitch: 1
+  - clipName: Load
+    clip: {fileID: 8300000, guid: 6a1db26ee4589964e9a97e449a892976, type: 3}
+    volume: 1
+    pitch: 1
+  - clipName: Comp
+    clip: {fileID: 8300000, guid: 2c14264fe8092504a9aafe01580f23d6, type: 3}
     volume: 1
     pitch: 1

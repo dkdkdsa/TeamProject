@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
-using Cinemachine.Editor;
 
 public class Weapon : MonoBehaviour
 {
@@ -79,12 +78,12 @@ public class Weapon : MonoBehaviour
     public void Reload()
     {
 
-        if(isReload == false && currentAmmo != 18)
+        if(isReload == false && currentAmmo != 18 && !isDelay)
         {
 
             isReload = true;
             ammoText = "Reload";
-            AudioManager.instance.Play("Reload");
+            
             StartCoroutine(ReLoadCO());
 
         }
@@ -136,6 +135,8 @@ public class Weapon : MonoBehaviour
 
         isDelay = true;
         yield return new WaitForSeconds(shootingDelay);
+        AudioManager.instance.Play("Comp");
+        yield return new WaitForSeconds(0.3f);
         isDelay = false;
 
     }
@@ -147,10 +148,15 @@ public class Weapon : MonoBehaviour
         while(currentAmmo != 18)
         {
 
-            currentAmmo++;
-            yield return new WaitForSeconds(0.05f);
+            currentAmmo += 3;
+            AudioManager.instance.Play("Reload");
+            yield return new WaitForSeconds(0.5f);
  
         }
+
+        AudioManager.instance.Play("Load");
+
+        yield return new WaitForSeconds(0.3f);
 
         isReload = false;
         ammoText = "Ammo";
@@ -161,13 +167,13 @@ public class Weapon : MonoBehaviour
 
         yield return null;
 
-        cbmcp.m_AmplitudeGain += 1f;
-        cbmcp.m_FrequencyGain += 0.7f;
+        cbmcp.m_AmplitudeGain += 0.5f;
+        cbmcp.m_FrequencyGain += 0.5f;
 
         yield return new WaitForSeconds(0.2f);
 
-        cbmcp.m_AmplitudeGain -= 1f;
-        cbmcp.m_FrequencyGain -= 0.7f;
+        cbmcp.m_AmplitudeGain -= 0.5f;
+        cbmcp.m_FrequencyGain -= 0.5f;
     }
 
 }

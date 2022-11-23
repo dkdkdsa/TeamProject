@@ -8,9 +8,8 @@ public class SaveData
 {
 
     public int money;
-    public WeaponBulletSlot[] weaponBulletSlots;
-    public BulletSlot[] bulletSlots;
-    public List<EventList> events;
+    public List<BulletDataSO> weaponBulletSlots = new List<BulletDataSO>(3);
+    public List<bool> bulletSlots = new List<bool>(6);
     public Potion potion;
 
 }

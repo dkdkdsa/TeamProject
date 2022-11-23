@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EnumTypes;
+using TMPro;
+using DG.Tweening;
 
 [System.Serializable]
 public class Items
@@ -12,6 +14,7 @@ public class Items
     public BulletDataSO bulletDataSO;
     public Sprite[] itemSprite;
     public string itemName;
+    public string[] showTexts;
     public int itemPrice;
     public int[] upgradeExtraPrice;
 
@@ -19,7 +22,9 @@ public class Items
 
 public class ShopCore : MonoBehaviour
 {
-    
+
+    [SerializeField] private TextMeshProUGUI showText;
+
     public List<Items> items = new List<Items>();    
 
     public int FindItem(string itemName)
@@ -124,6 +129,20 @@ public class ShopCore : MonoBehaviour
 
                 GameManager.instance.Money -= (items[FindItem(itemName)].itemPrice + items[FindItem(itemName)].upgradeExtraPrice[Upgrader.instance.FindUpGradeCount(items[FindItem(itemName)].bulletDataSO.bulletType)]);
                 Upgrader.instance.UpGrade(items[FindItem(itemName)].bulletDataSO.bulletType);
+                showText.DOKill();
+                showText.text = items[FindItem(itemName)].showTexts[Upgrader.instance.FindUpGradeCount(FindItems(itemName).bulletDataSO.bulletType)];
+                showText.color = new Color(0, 0, 0, 1);
+                showText.DOFade(0, 0.3f);
+
+
+            }
+            else
+            {
+
+                showText.DOKill();
+                showText.text = "돈이 부족합니다";
+                showText.color = new Color(0, 0, 0, 1);
+                showText.DOFade(0, 0.3f);
 
             }
 
@@ -132,7 +151,10 @@ public class ShopCore : MonoBehaviour
         {
 
             Debug.Log("이미 전부 강화된 상품입니다.");
-
+            showText.DOKill();
+            showText.text = "이미 전부 강화된 상품입니다.";
+            showText.color = new Color(0, 0, 0, 1);
+            showText.DOFade(0, 0.3f);
         }
 
 

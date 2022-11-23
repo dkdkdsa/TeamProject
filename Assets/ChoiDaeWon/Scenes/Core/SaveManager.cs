@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
+using UnityEditor.Purchasing;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -9,13 +11,6 @@ public class SaveManager : MonoBehaviour
     public SaveData saveData;
 
     public static SaveManager instance;
-
-    private void Awake()
-    {
-
-
-
-    }
 
     public void SetSaveData()
     {
@@ -32,6 +27,7 @@ public class SaveManager : MonoBehaviour
         {
 
             File.Create(@"C:\\Users\\user\\Documents\\GGMTPJ104\\SaveData.json");
+            File.Create(@"C:\\Users\\user\\Documents\\GGMTPJ104\\ErrorLog.json");
             GameManager.instance.isStart = true;
 
         }
@@ -39,10 +35,10 @@ public class SaveManager : MonoBehaviour
         {
 
             Read();
+            GameManager.instance.SetAllObj();
 
         }
-        //나중에 주석 풀어라 꼭 
-        //GameManager.instance.SetAllObj();
+
 
     }
 
@@ -55,12 +51,27 @@ public class SaveManager : MonoBehaviour
 
     }
 
+    public void Save<T>(T obj)
+    {
+
+        string jsonValue = JsonUtility.ToJson(obj);
+        File.WriteAllText(@"C:\\Users\\user\\Documents\\GGMTPJ104\\ErrorLog.json", jsonValue);
+
+    }
+
     private void Read()
     {
 
         string jsonValue = File.ReadAllText(@"C:\\Users\\user\\Documents\\GGMTPJ104\\SaveData.json");
-        saveData = JsonUtility.FromJson<SaveData>(jsonValue);
-        
+        saveData = JsonUtility.FromJson<SaveData>(jsonValue);        
+
+    }
+
+    public T Read<T>()
+    {
+
+        string jsonValue = File.ReadAllText(@"C:\\Users\\user\\Documents\\GGMTPJ104\\ErrorLog.json");
+        return JsonUtility.FromJson<T>(jsonValue);
 
     }
 

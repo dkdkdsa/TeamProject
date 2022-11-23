@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   bulletData: {fileID: 11400000, guid: ea9a17085b2c2d542862a90d4f041a8a, type: 2}
+  hitEffectName: HFX
 --- !u!1 &4787075129426899518
 GameObject:
   m_ObjectHideFlags: 0

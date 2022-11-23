@@ -91,6 +91,14 @@ public class Movement : MonoBehaviour
 
             currentDir = cam.ScreenToWorldPoint(Input.mousePosition);
 
+            
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+
+            PoolManager.instance.Remove("CFX", currentDir, Quaternion.Euler(90, 0, 0));
+
         }
 
         if (transform.position != (Vector3)currentDir) animator.SetBool("Run", true);

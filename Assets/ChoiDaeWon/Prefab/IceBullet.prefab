@@ -4951,3 +4951,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   bulletData: {fileID: 11400000, guid: b5765908a6a96ff41b8d6d33b118550b, type: 2}
+  hitEffectName: IFX

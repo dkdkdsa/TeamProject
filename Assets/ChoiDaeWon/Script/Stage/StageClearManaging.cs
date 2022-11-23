@@ -21,7 +21,7 @@ public class StageClearManaging : MonoBehaviour
         foreach(var m in managingObjects)
         {
 
-            if(m.transform.gameObject.activeSelf == false)
+            if(m.transform.gameObject.activeSelf == false || m.transform.parent.gameObject.activeSelf == false)
             {
 
                 mCount += 1;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnumTypes;
 using TMPro;
+using UnityEngine.Accessibility;
 
 public class Potion : MonoBehaviour
 {
@@ -14,6 +15,28 @@ public class Potion : MonoBehaviour
     public int portionCount_Lv1 { get; set; }
     public int portionCount_Lv2 { get; set; }
     public int portionCount_Lv3 { get; set; }
+
+    private void Awake()
+    {
+
+        try
+        {
+
+            portionCount_Lv1 = PlayerPrefs.GetInt("Pl1");
+            portionCount_Lv2 = PlayerPrefs.GetInt("Pl2");
+            portionCount_Lv3 = PlayerPrefs.GetInt("Pl3");
+
+        }
+        catch (System.Exception)
+        {
+
+            portionCount_Lv1 = 0;
+            portionCount_Lv2 = 0;
+            portionCount_Lv3 = 0;
+
+        }
+
+    }
 
     private void Update()
     {
@@ -72,6 +95,15 @@ public class Potion : MonoBehaviour
             GameManager.instance.PlayerHP += 75;
 
         }
+
+    }
+
+    public void Set()
+    {
+
+        PlayerPrefs.SetInt("Pl1", portionCount_Lv1);
+        PlayerPrefs.SetInt("Pl2", portionCount_Lv2);
+        PlayerPrefs.SetInt("Pl3", portionCount_Lv3);
 
     }
 

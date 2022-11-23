@@ -8,6 +8,8 @@ public class AudioManager
     private Dictionary<string, Clips> clips = new Dictionary<string, Clips>();
     private AudioSource audioSource;
 
+    public float volume;
+
     public static AudioManager instance;
 
     public AudioManager(AudioDataSO data, GameObject obj)

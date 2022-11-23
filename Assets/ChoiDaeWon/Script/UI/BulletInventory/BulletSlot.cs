@@ -4,18 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+[System.Serializable]
 public class BulletSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
     [SerializeField] private GameObject weaponSlotParent;
     [SerializeField] private BulletDataSO bullet;
     [SerializeField] private Image itemImage;
-    [SerializeField] private bool isBuying;
+    public bool isBuying;
 
     private DragSlot dragSlot;
 
     [field:SerializeField] public bool isAble { get; set; }
-    public BulletDataSO BulletData => bullet;
+    public BulletDataSO BulletData { get { return bullet; } set { bullet = value; } }
 
     private void Awake()
     {
@@ -47,6 +48,25 @@ public class BulletSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
         itemImage = GetComponentsInChildren<Image>()[1];
         this.bullet = bullet;
+        itemImage.sprite = bullet.bulletSprite;
+
+    }
+
+    private void Update()
+    {
+
+        if (isBuying == true)
+        {
+
+            Set();
+
+        }
+
+    }
+    public void Set()
+    {
+
+        itemImage = GetComponentsInChildren<Image>()[1];
         itemImage.sprite = bullet.bulletSprite;
 
     }

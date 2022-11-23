@@ -1,8 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Cinemachine;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Slider hpBar;
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private AudioDataSO audioData;
+    [SerializeField] private UnityEvent hitEvent; 
 
     [field:SerializeField] public float PlayerHP { get; set; }
 
@@ -27,6 +33,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     private Enemy[] enemy;
+    private CinemachineBasicMultiChannelPerlin cbmcp;
+    private bool isShacke;
 
     private void Awake()
     {
@@ -49,6 +57,8 @@ public class GameManager : MonoBehaviour
             o.gameObject.SetActive(false);
 
         }
+
+        cbmcp = FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
     }
 
@@ -93,9 +103,22 @@ public class GameManager : MonoBehaviour
     {
 
         SaveManager.instance.saveData.money = Money;
-        SaveManager.instance.saveData.weaponBulletSlots = FindObjectOfType<Inventory>().weaponBullets;
-        SaveManager.instance.saveData.bulletSlots = FindObjectOfType<Inventory>().bulletSlots;
-        SaveManager.instance.saveData.events = FindObjectOfType<Upgrader>().list;
+        
+        for(int j = 0; j < FindObjectOfType<Inventory>().weaponBullets.Length; j++)
+        {
+
+            SaveManager.instance.saveData.bulletSlots[j] = FindObjectOfType<Inventory>().weaponBullets[j].bullet;
+
+        }
+
+        for(int i = 0; i < FindObjectOfType<Inventory>().bulletSlots.Length; i++)
+        {
+
+            SaveManager.instance.saveData.bulletSlots[i] = FindObjectOfType<Inventory>().bulletSlots[i].isBuying;
+
+        }
+
+        FindObjectOfType<Potion>().Set();
         SaveManager.instance.Save();
 
     }
@@ -104,9 +127,19 @@ public class GameManager : MonoBehaviour
     {
 
         Money = SaveManager.instance.saveData.money;
-        FindObjectOfType<Inventory>().weaponBullets = SaveManager.instance.saveData.weaponBulletSlots;
-        FindObjectOfType<Inventory>().bulletSlots = SaveManager.instance.saveData.bulletSlots;
-        FindObjectOfType<Upgrader>().list = SaveManager.instance.saveData.events;
+
+        for (int i = 0; i < FindObjectOfType<Inventory>().weaponBullets.Length; i++)
+        {
+
+            FindObjectOfType<Inventory>().weaponBullets[i].bullet = SaveManager.instance.saveData.weaponBulletSlots[i];
+
+        }
+        for (int i = 0; i < FindObjectOfType<Inventory>().bulletSlots.Length; i++)
+        {
+
+            FindObjectOfType<Inventory>().bulletSlots[i].isBuying = SaveManager.instance.saveData.bulletSlots[i];
+
+        }
 
     }
 
@@ -116,7 +149,7 @@ public class GameManager : MonoBehaviour
 
         Rank rank = FindObjectOfType<Rank>();
         PlayerHP -= value;
-        
+        hitEvent?.Invoke();
 
         if(PlayerHP <= 0)
         {
@@ -126,6 +159,13 @@ public class GameManager : MonoBehaviour
             SetPlayerMoveAble(false);
             Movement m = FindObjectOfType<Movement>();
             m.Die();
+
+        }
+
+        if(isShacke == false)
+        {
+
+            StartCoroutine(PlayerDanageShakeCo());
 
         }
 
@@ -148,6 +188,37 @@ public class GameManager : MonoBehaviour
 
         PlayerHP = f;
 
+    }
+
+    public void SceneLoad(string sceneName)
+    {
+
+        try
+        {
+
+            Time.timeScale = 1;
+            SceneManager.LoadScene(sceneName);
+
+        }
+        catch (Exception)
+        {
+
+            Debug.LogError($"{sceneName} 이라는 이름에 씬이 존재하는지 확인해주세요");
+
+        }
+
+    }
+
+    IEnumerator PlayerDanageShakeCo()
+    {
+
+        isShacke = true;
+        cbmcp.m_AmplitudeGain += 2f;
+        cbmcp.m_FrequencyGain += 2f;
+        yield return new WaitForSeconds(0.1f);
+        cbmcp.m_AmplitudeGain -= 2f;
+        cbmcp.m_FrequencyGain -= 2f;
+        isShacke = false;
     }
 
 }

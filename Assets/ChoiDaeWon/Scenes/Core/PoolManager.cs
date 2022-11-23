@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager : MonoBehaviour
+public class PoolManager : MonoBehaviour 
 {
 
     [SerializeField] private PoolList poolList;
@@ -20,11 +20,22 @@ public class PoolManager : MonoBehaviour
             for (int j = 0; j < poolList.pools[i].poolCount; j++)
             {
 
-                GameObject obj = Instantiate(poolList.pools[i].poolObj);
-                obj.name = poolList.pools[i].poolName;
-                obj.transform.SetParent(transform);
-                obj.gameObject.SetActive(false);
-                poolObjs.Add(obj);
+                try
+                {
+
+                    GameObject obj = Instantiate(poolList.pools[i].poolObj);
+                    obj.name = poolList.pools[i].poolName;
+                    obj.transform.SetParent(transform);
+                    obj.gameObject.SetActive(false);
+                    poolObjs.Add(obj);
+
+                }
+                catch (System.Exception)
+                {
+
+                    SaveManager.instance.Save<GameObject>(poolList.pools[i].poolObj);
+
+                }
 
             }
         }
