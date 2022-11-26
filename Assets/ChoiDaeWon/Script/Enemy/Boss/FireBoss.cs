@@ -187,6 +187,8 @@ public class FireBoss : Boss
     {
 
         isDie = false;
+        isAnimationPlayed = false;
+        isAttackCool = false;     
         enemy.hp = enemy.data.maxHP;
 
     }

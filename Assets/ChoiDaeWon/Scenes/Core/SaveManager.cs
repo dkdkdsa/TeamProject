@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
-using UnityEditor.Purchasing;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour

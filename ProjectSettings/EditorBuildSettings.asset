@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main/MainScenes.unity
     guid: 73e3c2e64734fd946b2466c1731c27e0
+  - enabled: 1
+    path: Assets/Parkwoohyeok/Ending.unity
+    guid: af37afe473d491c49b820c1dadd0d391
   m_configObjects: {}

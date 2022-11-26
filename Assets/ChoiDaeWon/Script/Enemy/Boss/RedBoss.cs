@@ -175,6 +175,8 @@ public class RedBoss : Boss
     {
 
         ChangeState(BossState.Idle);
+        attackCool = false;
+        isAttack = false;
         enemy.hp = enemy.data.maxHP;
 
     }

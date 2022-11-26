@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -59,6 +60,20 @@ public class StoneSummoner : MonoBehaviour
 
 
         yield return null;
+
+    }
+
+    private void OnDisable()
+    {
+        
+        StoneAI[] stoen = FindObjectsOfType<StoneAI>();
+
+        foreach(var item in stoen)
+        {
+
+            item.DeSpawn();
+
+        }
 
     }
 
