@@ -209,6 +209,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ADDMoney(int i)
+    {
+
+        money += i;
+
+    }
+
     IEnumerator PlayerDanageShakeCo()
     {
 

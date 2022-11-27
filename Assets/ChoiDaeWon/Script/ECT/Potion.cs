@@ -12,9 +12,9 @@ public class Potion : MonoBehaviour
     [SerializeField] private TextMeshProUGUI L2Text;
     [SerializeField] private TextMeshProUGUI L3Text;
 
-    public int portionCount_Lv1 { get; set; }
-    public int portionCount_Lv2 { get; set; }
-    public int portionCount_Lv3 { get; set; }
+    public int portionCount_Lv1 { get; set; } = 5;
+    public int portionCount_Lv2 { get; set; } = 5;
+    public int portionCount_Lv3 { get; set; } = 5;
 
     private void Awake()
     {
@@ -26,13 +26,22 @@ public class Potion : MonoBehaviour
             portionCount_Lv2 = PlayerPrefs.GetInt("Pl2");
             portionCount_Lv3 = PlayerPrefs.GetInt("Pl3");
 
+            if(portionCount_Lv1 == 0 && portionCount_Lv2 == 0 && portionCount_Lv3 == 0)
+            {
+
+                portionCount_Lv1 = 5;
+                portionCount_Lv2 = 5;
+                portionCount_Lv3 = 5;
+
+            }
+
         }
         catch (System.Exception)
         {
 
-            portionCount_Lv1 = 0;
-            portionCount_Lv2 = 0;
-            portionCount_Lv3 = 0;
+            portionCount_Lv1 = 5;
+            portionCount_Lv2 = 5;
+            portionCount_Lv3 = 5;
 
         }
 

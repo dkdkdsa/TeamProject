@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
     private void BulletInventoryOpen()
     {
 
+        GameManager.instance.SetPlayerGunAble(false);
         Sequence sequence = DOTween.Sequence();
         sequence
         .OnStart(() => 
@@ -60,6 +61,7 @@ public class UIManager : MonoBehaviour
     private void BulletInventoryClose()
     {
 
+        GameManager.instance.SetPlayerGunAble(true);
         Sequence sequence = DOTween.Sequence();
         sequence
         .OnStart(() => 
