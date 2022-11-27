@@ -64,7 +64,7 @@ public class BlueBoss : Boss
 
         if (isDie) return;
         isDie = true;
-        animator.SetTrigger(DieHash);
+        DieEvnet();
 
     }
 
