@@ -64,7 +64,7 @@ public class BlueBoss : Boss
 
         if (isDie) return;
         isDie = true;
-        animator.SetTrigger(DieHash);
+        DieEvnet();
 
     }
 
@@ -170,6 +170,7 @@ public class BlueBoss : Boss
     {
 
         isDie = false;
+        skillCool = false;
         enemy.hp = enemy.data.maxHP;
 
     }

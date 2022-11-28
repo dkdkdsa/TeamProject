@@ -132,7 +132,7 @@ public class ShopCore : MonoBehaviour
                 showText.DOKill();
                 showText.text = items[FindItem(itemName)].showTexts[Upgrader.instance.FindUpGradeCount(FindItems(itemName).bulletDataSO.bulletType)];
                 showText.color = new Color(0, 0, 0, 1);
-                showText.DOFade(0, 0.3f);
+                showText.DOFade(0, 0.7f);
 
 
             }
@@ -142,7 +142,7 @@ public class ShopCore : MonoBehaviour
                 showText.DOKill();
                 showText.text = "돈이 부족합니다";
                 showText.color = new Color(0, 0, 0, 1);
-                showText.DOFade(0, 0.3f);
+                showText.DOFade(0, 0.7f);
 
             }
 
@@ -154,7 +154,7 @@ public class ShopCore : MonoBehaviour
             showText.DOKill();
             showText.text = "이미 전부 강화된 상품입니다.";
             showText.color = new Color(0, 0, 0, 1);
-            showText.DOFade(0, 0.3f);
+            showText.DOFade(0, 0.7f);
         }
 
 

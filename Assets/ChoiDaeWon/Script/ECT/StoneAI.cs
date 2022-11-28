@@ -8,6 +8,7 @@ public class StoneAI : MonoBehaviour
     [SerializeField] private RangeCircle rangeCircle;
     [SerializeField] private string summoningEnemy;
 
+    private List<GameObject> list = new List<GameObject>();
     private Enemy thisEnemy;
     private bool isHeal;
 
@@ -28,14 +29,26 @@ public class StoneAI : MonoBehaviour
 
         }
 
-        if(thisEnemy.hp <= 0)
+
+        try
+        {
+
+            if(thisEnemy.hp <= 0 || thisEnemy.gameObject.activeSelf == false || thisEnemy.transform.parent.gameObject.activeSelf == false)
+            {
+
+                DeSpawn();
+
+            }
+
+        }
+        catch (System.Exception)
         {
 
             DeSpawn();
 
         }
 
-       
+
 
     }
 
@@ -51,6 +64,12 @@ public class StoneAI : MonoBehaviour
     public void DeSpawn()
     {
 
+        foreach(var item in list)
+        {
+
+            PoolManager.instance.Add(item);
+
+        }
         PoolManager.instance.Add(gameObject);
         StopCoroutine("SummonCo");
 
@@ -88,10 +107,10 @@ public class StoneAI : MonoBehaviour
             for(int i = 0; i < 3; i++)
             {
 
-                PoolManager.instance.Remove(summoningEnemy, 
+                list.Add(PoolManager.instance.Remove(summoningEnemy,
                     new Vector2(Random.Range(transform.position.x - 1, transform.position.x + 1)
-                    , Random.Range(transform.position.y + 1, transform.position.y -1))
-                    , Quaternion.identity);
+                    , Random.Range(transform.position.y + 1, transform.position.y - 1))
+                    , Quaternion.identity));
                 yield return null;
 
             }

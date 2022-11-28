@@ -10,6 +10,8 @@ public class RedBossSkill : MonoBehaviour
 
     private CinemachineBasicMultiChannelPerlin cbmcp;
     private bool isDash;
+    private bool isDashShake;
+    private bool isShake;
     private Vector3 endPos;
 
     private void Awake()
@@ -89,11 +91,13 @@ public class RedBossSkill : MonoBehaviour
 
         yield return null;
 
+        isShake = true;
         cbmcp.m_AmplitudeGain += 2;
         cbmcp.m_FrequencyGain += 2;
         yield return new WaitForSeconds(0.1f);
         cbmcp.m_AmplitudeGain -= 2;
         cbmcp.m_FrequencyGain -= 2;
+        isShake = false;
 
     }
 
@@ -102,11 +106,34 @@ public class RedBossSkill : MonoBehaviour
 
         yield return null;
 
+        isDashShake = true;
         cbmcp.m_AmplitudeGain += 0.5f;
         cbmcp.m_FrequencyGain += 0.5f;
         yield return new WaitForSeconds(0.1f);
         cbmcp.m_AmplitudeGain -= 0.5f;
         cbmcp.m_FrequencyGain -= 0.5f;
+        isDashShake = false;
+
+    }
+
+    private void OnDisable()
+    {
+
+        if (isDashShake)
+        {
+
+            cbmcp.m_AmplitudeGain -= 0.5f;
+            cbmcp.m_FrequencyGain -= 0.5f;
+
+        }
+
+        if (isShake)
+        {
+
+            cbmcp.m_AmplitudeGain -= 2;
+            cbmcp.m_FrequencyGain -= 2;
+
+        }
 
     }
 

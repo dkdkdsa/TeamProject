@@ -4,17 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class LastBoss : Boss
 {
-
 
     [SerializeField] private RangeCircle walkRange;
     [SerializeField] private RangeCircle attackRange;
     [SerializeField] private Enemy thisEnemy;
     [SerializeField] private GameObject baseObj;
     [SerializeField] private float speed;
-
+    
     [field:SerializeField] protected new UnityEvent<Animator, SpriteRenderer> SkillEvent { get; set; }
     [field: SerializeField] protected override Animator animator { get; set; }
     [field:SerializeField] protected override SpriteRenderer bossRenderer { get; set; }
@@ -156,6 +156,7 @@ public class LastBoss : Boss
     public void DieEvnet()
     {
 
+        SceneManager.LoadScene("Ending");
         PoolManager.instance.Add(gameObject);
 
     }
