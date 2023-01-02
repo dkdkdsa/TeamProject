@@ -1,18 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VolumeSetter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private Slider slider;
+
+    private void Awake()
     {
         
+        if(PlayerPrefs.GetInt("Start") == 0)
+        {
+
+            slider.value = 1;
+            PlayerPrefs.SetInt("Start", 1);
+
+        }
+        else
+        {
+
+            slider.value = PlayerPrefs.GetFloat("Volume");
+
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+
+        PlayerPrefs.SetFloat("Volume", slider.value);
+
     }
+
 }

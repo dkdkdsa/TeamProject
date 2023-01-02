@@ -10,6 +10,7 @@ public class LastBossSkill : MonoBehaviour
     private bool isSummonCool;
     private bool flip;
     private CinemachineBasicMultiChannelPerlin cbmcp;
+    private List<GameObject> obj;
 
     public void Skill(Animator animator, SpriteRenderer renderer)
     {
@@ -35,7 +36,7 @@ public class LastBossSkill : MonoBehaviour
     {
 
         Vector2 boxSize;
-        boxSize = flip ? new Vector2(-3, 4) : new Vector2(3, 4);
+        boxSize = flip ? new Vector2(-3, 6) : new Vector2(3, 6);
 
         if(Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.zero, 0, LayerMask.GetMask("Player")))
         {
@@ -67,7 +68,7 @@ public class LastBossSkill : MonoBehaviour
 
         };
 
-        PoolManager.instance.Remove(s, transform.position, Quaternion.identity);
+        obj.Add(PoolManager.instance.Remove(s, transform.position, Quaternion.identity));
 
     }
 
@@ -97,6 +98,19 @@ public class LastBossSkill : MonoBehaviour
 
         cbmcp.m_AmplitudeGain -= 3;
         cbmcp.m_FrequencyGain -= 3;
+
+    }
+
+    private void OnDisable()
+    {
+
+        isSummonCool = false;
+        foreach(var o in obj)
+        {
+
+            o.gameObject.SetActive(false);
+
+        }
 
     }
 
