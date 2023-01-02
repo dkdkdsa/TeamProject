@@ -228,4 +228,12 @@ public class GameManager : MonoBehaviour
         isShacke = false;
     }
 
+    public void ResetShake()
+    {
+        
+        cbmcp.m_AmplitudeGain = 0;
+        cbmcp.m_FrequencyGain = 0;
+
+    }
+
 }

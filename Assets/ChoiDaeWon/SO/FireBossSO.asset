@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7545e3af65fb94945a0385a1ded51e39, type: 3}
   m_Name: FireBossSO
   m_EditorClassIdentifier: 
-  maxHP: 5500
+  maxHP: 4500
   attackPower: 0
